@@ -1,0 +1,8 @@
+node_modules
+.next
+out
+.env*.local
+*.log
+dev-out.html
+Userslguarprojetospwlabs-websitedev-out.html
+.DS_Store
