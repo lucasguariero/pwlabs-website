@@ -34,7 +34,7 @@ export function BlogCover({ slug, className }: CoverProps) {
   );
 }
 
-type Art = () => JSX.Element;
+type Art = () => React.ReactElement;
 
 const Covers: Record<string, Art> = {
   // 1. Sites institucionais — duas janelas: site sem argumento (esmaecido) vs site com hierarquia (destaque)
