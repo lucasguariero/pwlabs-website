@@ -7,8 +7,7 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 
 export const metadata: Metadata = {
   title: "PWlabs — Páginas que vendem, marcas que ficam",
-  description:
-    "Landing pages, sites institucionais, e-commerce, tráfego pago e SEO. Páginas no ar em 15 dias.",
+  description: "Landing pages, sites institucionais, e-commerce, tráfego pago e SEO. Páginas no ar em 15 dias.",
 };
 
 export default function RootLayout({
@@ -17,7 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      {children}
-    );
+    <html lang="pt-BR">
+      <body className={`${GeistSans.className} antialiased`}>
+        <RevealOnScroll />
+        <BudgetProvider>{children}</BudgetProvider>
+        <WhatsAppFloat />
+      </body>
+    </html>
+  );
 }
-
