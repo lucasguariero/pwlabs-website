@@ -1,5 +1,5 @@
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { BudgetProvider } from "@/components/BudgetProvider";
@@ -43,3 +43,4 @@ export default function RootLayout({
     </html>
   );
 }
+
