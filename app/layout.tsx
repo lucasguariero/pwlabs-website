@@ -17,13 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-      <html lang="pt-BR" className={GeistSans.variable}>
-        <body className="font-sans antialiased">
-          <RevealOnScroll />
-          <BudgetProvider>{children}</BudgetProvider>
-          <WhatsAppFloat />
-        </body>
-      </html>
+      {children}
     );
 }
 
