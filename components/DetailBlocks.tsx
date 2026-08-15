@@ -31,11 +31,25 @@ export function DetailBlocks() {
                   ))}
                 </ul>
               </div>
-              <div className={`detail-visual ${block.eyebrow === "Tráfego pago" ? "has-image" : ""}`}>
+              <div className={`detail-visual ${block.eyebrow === "Tráfego pago" || block.eyebrow === "Criação de sites" || block.eyebrow === "SEO orgânico" ? "has-image" : ""}`}>
                 {block.eyebrow === "Tráfego pago" ? (
                   <img
                     src="/assets/sections/section-1.svg"
                     alt="Tráfego pago"
+                    className="detail-section-image"
+                    loading="lazy"
+                  />
+                ) : block.eyebrow === "Criação de sites" ? (
+                  <img
+                    src="/assets/sections/section-2.svg"
+                    alt="Criação de sites"
+                    className="detail-section-image"
+                    loading="lazy"
+                  />
+                ) : block.eyebrow === "SEO orgânico" ? (
+                  <img
+                    src="/assets/sections/section-3.svg"
+                    alt="SEO orgânico"
                     className="detail-section-image"
                     loading="lazy"
                   />
