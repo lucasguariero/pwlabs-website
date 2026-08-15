@@ -34,7 +34,7 @@ export function DetailBlocks() {
               <div className={`detail-visual ${block.eyebrow === "Tráfego pago" ? "has-image" : ""}`}>
                 {block.eyebrow === "Tráfego pago" ? (
                   <img
-                    src="/assets/sections/section-1.png"
+                    src="/assets/sections/section-1.svg"
                     alt="Tráfego pago"
                     className="detail-section-image"
                   />

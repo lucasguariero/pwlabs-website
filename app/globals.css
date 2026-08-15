@@ -700,7 +700,10 @@
     opacity: 0.15;
   }
   .detail-section-image {
-    @apply w-full h-full object-contain;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: contain;
   }
   .detail-bullets {
     @apply flex flex-col gap-3 mt-6;
