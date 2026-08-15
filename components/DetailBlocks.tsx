@@ -37,8 +37,13 @@ export function DetailBlocks() {
                     src="/assets/sections/section-1.svg"
                     alt="Tráfego pago"
                     className="detail-section-image"
-                    width="100%"
-                    height="auto"
+                    loading="lazy"
+                  />
+                ) : block.eyebrow === "Criação de sites" ? (
+                  <img
+                    src="/assets/sections/section-2.svg"
+                    alt="Criação de sites"
+                    className="detail-section-image"
                     loading="lazy"
                   />
                 ) : (
