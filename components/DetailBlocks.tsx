@@ -53,6 +53,7 @@ export function DetailBlocks() {
                     className="detail-section-image"
                     loading="lazy"
                   />
+                ) : (
                   <svg
                     className="detail-visual-icon"
                     viewBox="0 0 24 24"
