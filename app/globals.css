@@ -704,7 +704,6 @@
   .detail-section-image {
     width: 100%;
     height: auto;
-    display: block;
   }
   .detail-bullets {
     @apply flex flex-col gap-3 mt-6;
