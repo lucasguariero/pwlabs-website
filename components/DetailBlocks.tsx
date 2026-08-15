@@ -33,13 +33,11 @@ export function DetailBlocks() {
               </div>
               <div className={`detail-visual ${block.eyebrow === "Tráfego pago" ? "has-image" : ""}`}>
                 {block.eyebrow === "Tráfego pago" ? (
-                  <img
-                    src="/assets/sections/section-1.svg"
-                    alt="Tráfego pago"
-                    className="detail-section-image"
-                    style={{ width: "100%", height: "auto", display: "block" }}
-                    loading="lazy"
-                  />
+                  <div className="detail-section-image">
+                    <svg viewBox="0 0 576 432" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style={{ width: "100%", height: "auto", display: "block" }}>
+                      <use href="/assets/sections/section-1.svg#Camada_2" />
+                    </svg>
+                  </div>
                 ) : (
                   <svg
                     className="detail-visual-icon"
