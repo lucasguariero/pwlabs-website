@@ -21,7 +21,7 @@ export default function HomePage() {
         <Stats />
         <Services />
         <MockupsMarquee />
-        <Portfolio />
+        {/* <Portfolio /> */}
         <Timeline />
         <DetailBlocks />
         <Testimonials />
