@@ -53,8 +53,6 @@ export function Footer() {
             </p>
             <div className="footer-socials">
               <Social label="Instagram" href="#" />
-              <Social label="Facebook" href="#" />
-              <Social label="LinkedIn" href="#" />
             </div>
           </div>
 
