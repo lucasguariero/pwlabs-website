@@ -672,6 +672,9 @@
     @apply grid items-center gap-12 py-[80px];
     grid-template-columns: 1fr 1fr;
   }
+  .detail-block:last-of-type {
+    padding-bottom: 120px;
+  }
   @media (max-width: 900px) {
     .detail-block {
       grid-template-columns: 1fr;
