@@ -690,10 +690,17 @@
     background: var(--ink-2);
     border: 1px solid var(--line);
   }
+  .detail-visual.has-image {
+    background: transparent;
+    border: none;
+  }
   .detail-visual-icon {
     @apply w-32 h-32;
     color: var(--cream);
     opacity: 0.15;
+  }
+  .detail-section-image {
+    @apply w-full h-full object-contain;
   }
   .detail-bullets {
     @apply flex flex-col gap-3 mt-6;
