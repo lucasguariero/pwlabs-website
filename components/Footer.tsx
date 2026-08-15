@@ -52,7 +52,7 @@ export function Footer() {
               landing pages, sites e copy que viram resultado.
             </p>
             <div className="footer-socials">
-              <Social label="Instagram" href="#" />
+              <Social label="Instagram" href="https://www.instagram.com/pwlabs/" />
             </div>
           </div>
 
