@@ -6,3 +6,6 @@ out
 dev-out.html
 Userslguarprojetospwlabs-websitedev-out.html
 .DS_Store
+
+.vercel
+.env*

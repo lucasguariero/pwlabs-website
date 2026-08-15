@@ -494,128 +494,83 @@
   }
 
   /* ============= MARQUEE DE MOCKUPS (3 fileiras retrato) ============= */
-  .mockups-section {
-    @apply pt-24 pb-20 overflow-hidden;
-    background: var(--ink);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-  }
-  .mockups-header {
-    @apply text-center mb-16;
-  }
-  .mockups-header h2 {
-    @apply font-serif font-medium leading-[1.05] tracking-[-0.02em];
-    font-size: clamp(32px, 4vw, 52px);
-    color: var(--cream);
-  }
-  .mockups-header h2 em {
-    font-style: normal;
-    color: var(--pink);
-    font-weight: 400;
-  }
-  .mockups-rows {
-    @apply flex flex-col gap-6;
+.mockups-section {
+  @apply pt-24 pb-20 overflow-hidden;
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.mockups-header {
+  @apply text-center mb-16;
+}
+
+.mockups-header h2 {
+  @apply font-serif font-medium leading-[1.05] tracking-[-0.02em];
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--cream);
+}
+
+.mockups-header h2 em {
+  font-style: normal;
+  color: var(--pink);
+  font-weight: 400;
+}
+
+.mockups-rows {
+  @apply flex flex-col gap-6;
+}
+
+.mockups-track {
+  @apply flex gap-7 w-max;
+  will-change: transform;
+}
+
+.mockups-track.row-1 {
+  animation: mockups-marquee 60s linear infinite;
+}
+
+.mockups-track.row-2 {
+  animation: mockups-marquee 50s linear infinite;
+  animation-direction: reverse;
+}
+
+.mockups-track.row-3 {
+  animation: mockups-marquee 70s linear infinite;
+}
+
+@keyframes mockups-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.mockup {
+  @apply rounded-xl overflow-hidden relative flex-shrink-0;
+  width: 300px;
+  aspect-ratio: 3 / 4;
+  background: var(--ink-2);
+  border: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+  .mockup {
+    width: 200px;
   }
   .mockups-track {
-    @apply flex gap-7 w-max;
-    will-change: transform;
+    gap: 20px;
   }
-  .mockups-track.row-1 {
-    animation: mockups-marquee 60s linear infinite;
-  }
-  .mockups-track.row-2 {
-    animation: mockups-marquee 50s linear infinite;
-    animation-direction: reverse;
-  }
-  .mockups-track.row-3 {
-    animation: mockups-marquee 70s linear infinite;
-  }
-  @keyframes mockups-marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  .mockup {
-    @apply rounded-xl overflow-hidden relative flex-shrink-0;
-    width: 300px;
-    aspect-ratio: 3 / 4;
-    background: var(--ink-2);
-    border: 1px solid var(--line);
-  }
-  @media (max-width: 768px) {
-    .mockup {
-      width: 200px;
-    }
-    .mockups-track {
-      gap: 20px;
-    }
-  }
-  .mockup .m-header {
-    @apply h-[18px] flex items-center px-2 gap-1;
-    background: var(--ink-3);
-    border-bottom: 1px solid var(--line);
-  }
-  .mockup .m-header .dot {
-    @apply w-[5px] h-[5px] rounded-full;
-    background: rgba(255, 255, 255, 0.18);
-  }
-  .mockup .m-body {
-    @apply py-3.5 px-4 flex flex-col gap-2;
-  }
-  .mockup .m-line {
-    @apply h-[5px] rounded-sm;
-    background: rgba(255, 255, 255, 0.14);
-  }
-  .mockup .m-line.short { width: 35%; }
-  .mockup .m-line.mid { width: 65%; }
-  .mockup .m-line.long { width: 90%; }
-  .mockup .m-block {
-    @apply mt-2 h-7 rounded;
-    background: rgba(255, 5, 112, 0.18);
-    border: 1px solid rgba(255, 5, 112, 0.35);
-    width: 60%;
-  }
-  .mockup .m-title {
-    @apply mt-3 font-serif text-center uppercase;
-    font-size: 11px;
-    letter-spacing: 0.16em;
-    color: var(--muted);
-  }
-  .mockup.m-1 .m-block { background: rgba(255, 5, 112, 0.28); }
-  .mockup.m-2 .m-block { background: rgba(255, 153, 195, 0.22); }
-  .mockup.m-3 .m-block { background: rgba(244, 239, 230, 0.16); }
-  .mockup.m-4 .m-block { background: rgba(255, 5, 112, 0.18); }
+}
 
-  /* ============= PORTFOLIO — gradientes 1-10 (sem emoji) ============= */
-  .portfolio-v-1 { background: linear-gradient(135deg, #1a1820 0%, #2a2030 100%); }
-  .portfolio-v-2 { background: linear-gradient(135deg, #14141a 0%, #20121c 100%); }
-  .portfolio-v-3 { background: linear-gradient(135deg, #14151c 0%, #181c20 100%); }
-  .portfolio-v-4 { background: linear-gradient(135deg, #1c1418 0%, #251828 100%); }
-  .portfolio-v-5 { background: linear-gradient(135deg, #181818 0%, #222222 100%); }
-  .portfolio-v-6 { background: linear-gradient(135deg, #181420 0%, #2a1a3a 100%); }
-  .portfolio-v-7 { background: linear-gradient(135deg, #1a1a1f 0%, #2d1f33 100%); }
-  .portfolio-v-8 { background: linear-gradient(135deg, #16161a 0%, #261828 100%); }
-  .portfolio-v-9 { background: linear-gradient(135deg, #1f181c 0%, #2f2530 100%); }
-  .portfolio-v-10 { background: linear-gradient(135deg, #14141e 0%, #221a30 100%); }
+/* 👇 SUA IMAGEM FINAL ENTRA AQUI 👇 */
+.mockup-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-  .portfolio-mockup {
-    @apply flex flex-col gap-1.5;
-    width: 70%;
-    aspect-ratio: 16 / 10;
-    background: var(--ink);
-    border-radius: 6px;
-    padding: 14px;
-  }
-  .portfolio-mockup .b {
-    @apply h-1 rounded-sm;
-    background: rgba(255, 255, 255, 0.18);
-  }
-  .portfolio-mockup .b.s { width: 38%; }
-  .portfolio-mockup .b.m { width: 70%; }
-  .portfolio-mockup .b.l { width: 90%; }
-  .portfolio-mockup .accent {
-    @apply h-2 w-[40%] rounded mt-1.5;
-    background: var(--pink);
-  }
+/* ============= PORTFOLIO — gradientes 1-10 (sem emoji) ============= */
+/* (o resto do seu código original continua daqui para baixo sem alterações) */
 
   /* ============= PORTFÓLIO ============= */
   .portfolio-grid {
