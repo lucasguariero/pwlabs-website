@@ -693,6 +693,8 @@
   .detail-visual.has-image {
     background: transparent;
     border: none;
+    aspect-ratio: auto;
+    height: auto;
   }
   .detail-visual-icon {
     @apply w-32 h-32;
@@ -702,8 +704,7 @@
   .detail-section-image {
     width: 100%;
     height: auto;
-    max-height: 100%;
-    object-fit: contain;
+    display: block;
   }
   .detail-bullets {
     @apply flex flex-col gap-3 mt-6;

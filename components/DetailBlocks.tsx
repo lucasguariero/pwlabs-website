@@ -37,6 +37,7 @@ export function DetailBlocks() {
                     src="/assets/sections/section-1.svg"
                     alt="Tráfego pago"
                     className="detail-section-image"
+                    loading="lazy"
                   />
                 ) : (
                   <svg
