@@ -37,6 +37,7 @@ export function DetailBlocks() {
                     src="/assets/sections/section-1.svg"
                     alt="Tráfego pago"
                     className="detail-section-image"
+                    style={{ width: "100%", height: "auto", display: "block" }}
                     loading="lazy"
                   />
                 ) : (
