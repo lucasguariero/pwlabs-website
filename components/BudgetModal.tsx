@@ -2,16 +2,29 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { WHATSAPP_URL } from "@/lib/data";
+import { supabase } from "@/lib/supabase";
 
 type Props = {
   open: boolean;
   onClose: () => void;
 };
 
+function getUtmParams() {
+  if (typeof window === "undefined") return {};
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get("utm_source") || null,
+    utm_medium: params.get("utm_medium") || null,
+    utm_campaign: params.get("utm_campaign") || null,
+  };
+}
+
 export function BudgetModal({ open, onClose }: Props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [telefone, setTelefone] = useState("");
   const [message, setMessage] = useState("");
+  const [sending, setSending] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -29,11 +42,28 @@ export function BudgetModal({ open, onClose }: Props) {
 
   if (!open) return null;
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    setSending(true);
+
+    const utm = getUtmParams();
+
+    // Salvar no Supabase
+    await supabase.from("contatos").insert({
+      nome: name,
+      email,
+      telefone,
+      mensagem: message,
+      ...utm,
+    });
+
+    // Abrir WhatsApp
     const text = `Olá, vim pelo site da PWlabs.%0A%0ANome: ${name}%0AEmail: ${email}%0AMensagem: ${message}`;
     const url = WHATSAPP_URL.replace(/[^/]+$/, "") + text;
     window.open(url, "_blank");
+
+    setSending(false);
+    onClose();
   }
 
   return (
@@ -91,6 +121,16 @@ export function BudgetModal({ open, onClose }: Props) {
             />
           </div>
           <div className="form-field">
+            <label htmlFor="budget-telefone">WhatsApp (opcional)</label>
+            <input
+              id="budget-telefone"
+              type="tel"
+              value={telefone}
+              onChange={(e) => setTelefone(e.target.value)}
+              placeholder="(11) 99999-9999"
+            />
+          </div>
+          <div className="form-field">
             <label htmlFor="budget-message">Mensagem</label>
             <textarea
               id="budget-message"
@@ -105,8 +145,9 @@ export function BudgetModal({ open, onClose }: Props) {
             type="submit"
             className="btn-primary w-full justify-center mt-3"
             style={{ width: "100%", justifyContent: "center" }}
+            disabled={sending}
           >
-            Enviar pelo WhatsApp
+            {sending ? "Enviando..." : "Enviar pelo WhatsApp"}
             <svg
               className="arrow"
               viewBox="0 0 24 24"
