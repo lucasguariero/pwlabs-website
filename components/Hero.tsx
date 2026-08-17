@@ -79,36 +79,13 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Lado direito — mockup de conversa WhatsApp */}
-          <div>
-            <div className="chat-mockup">
-              <div className="chat-mockup-header">
-                <div className="chat-mockup-avatar">P</div>
-                <div>
-                  <div className="chat-mockup-name">PWlabs</div>
-                  <div className="chat-mockup-status">online</div>
-                </div>
-              </div>
-
-              <div className="chat-mockup-body">
-                <div className="chat-bubble them">
-                  Oi! Vi o portfólio de vocês e gostaria de um orçamento pra uma landing page.
-                  <span className="chat-bubble-time">14:21</span>
-                </div>
-                <div className="chat-bubble me">
-                  Oi! Claro, posso te ajudar. Me conta rapidinho: é pra quê segmento e tem prazo?
-                  <span className="chat-bubble-time">14:22</span>
-                </div>
-                <div className="chat-bubble them">
-                  Lançamento de infoproduto, queria entregar em 15 dias.
-                  <span className="chat-bubble-time">14:23</span>
-                </div>
-                <div className="chat-bubble me">
-                  Perfeito, encaixa no nosso fluxo. Vou te mandar uma proposta agora.
-                  <span className="chat-bubble-time">14:23</span>
-                </div>
-              </div>
-            </div>
+          {/* Lado direito — imagem do header */}
+          <div className="relative">
+            <img
+              src="/assets/pwlabs-header-1.png"
+              alt="PWlabs — páginas que vendem"
+              className="w-[750px] max-w-none rounded-2xl"
+            />
           </div>
         </div>
       </div>
