@@ -80,11 +80,11 @@ export function Hero() {
           </div>
 
           {/* Lado direito — imagem do header */}
-          <div className="relative w-full overflow-hidden">
+          <div className="relative md:w-[120%] md:-mr-[10%]">
             <img
               src="/assets/pwlabs-header-1.png"
               alt="PWlabs — páginas que vendem"
-              className="w-full h-auto max-w-[750px] rounded-2xl"
+              className="w-full h-auto max-w-[900px] rounded-2xl"
             />
           </div>
         </div>
