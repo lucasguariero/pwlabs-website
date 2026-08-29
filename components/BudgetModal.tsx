@@ -57,6 +57,14 @@ export function BudgetModal({ open, onClose }: Props) {
       ...utm,
     });
 
+    // Enviar evento de conversão para GA4
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "generate_lead", {
+        event_category: "form",
+        event_label: "orcamento",
+      });
+    }
+
     // Abrir WhatsApp
     const text = `Olá, vim pelo site da PWlabs.%0A%0ANome: ${name}%0AEmail: ${email}%0AMensagem: ${message}`;
     const url = WHATSAPP_URL.replace(/[^/]+$/, "") + text;
