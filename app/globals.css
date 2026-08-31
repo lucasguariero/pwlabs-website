@@ -1326,11 +1326,14 @@
 }
 
 @layer base {
-*, body, html {
-  font-family: var(--font-geist-sans), "Geist Sans", "Geist", system-ui, -apple-system, sans-serif !important;
+html, body, input, button, textarea, select {
+  font-family: var(--font-geist-sans), "Geist Sans", "Geist", system-ui, -apple-system, sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6, .font-display, .font-serif {
+h1, h2, h3, h4, h5, h6, 
+h1 *, h2 *, h3 *, h4 *, h5 *, h6 *, 
+.font-display, .font-display *, 
+.font-serif, .font-serif * {
   font-family: var(--font-klarheit), sans-serif !important;
 }
 }

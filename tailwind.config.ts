@@ -8,9 +8,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-     sans: ["var(--font-geist-sans)", "sans-serif"],
-     mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
-   },
+        sans: ["var(--font-geist-sans)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        serif: ["var(--font-klarheit)", "serif"],
+        display: ["var(--font-klarheit)", "sans-serif"],
+      },
       colors: {
         ink: {
           DEFAULT: "#0C0C0F",
