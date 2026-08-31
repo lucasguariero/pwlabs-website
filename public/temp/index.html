@@ -36,6 +36,9 @@
       background-color: #050507;
       font-family: 'Geist', system-ui, -apple-system, sans-serif;
     }
+    .text-glow {
+      text-shadow: 0 0 20px rgba(255, 5, 112, 0.4);
+    }
   </style>
 </head>
 <body class="min-h-screen text-pwCream flex flex-col items-center py-10 px-4 select-none">
@@ -47,96 +50,179 @@
   </header>
 
   <!-- Container do Carrossel (Visualização Empilhada e Responsiva) -->
-  <main class="w-full max-w-[380px] flex flex-col gap-8">
+  <main class="w-full max-w-[380px] flex flex-col gap-10">
     
     <!-- SLIDE 1 (Capa) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">MANIFESTO</span>
-        <span class="text-[10px] tracking-widest text-pwMuted font-mono">01/04</span>
+    <section class="w-full aspect-[4/5] bg-gradient-to-b from-[#0e0e12] to-pwInk border border-white/[0.08] rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <!-- Elemento de fundo sutil para dar profundidade -->
+      <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-pwMagenta/5 rounded-full filter blur-3xl pointer-events-none"></div>
+      <!-- Número gigante de fundo -->
+      <div class="absolute right-6 bottom-4 text-[10rem] font-extrabold text-white/[0.015] select-none leading-none font-display">01</div>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[9px] tracking-[0.25em] text-pwMagenta font-black uppercase font-sans">MANIFESTO</span>
+        <span class="text-[9px] tracking-widest text-pwMuted font-mono font-bold">01/04</span>
       </div>
-      <div class="my-auto">
-        <h2 class="text-4xl font-extrabold tracking-tighter leading-[0.95] uppercase font-display text-pwCream">
+      
+      <div class="my-auto z-10">
+        <h2 class="text-[2.6rem] font-extrabold tracking-[-0.04em] leading-[0.9] uppercase font-display text-pwCream">
           Sites<br>
-          <span class="text-pwMagenta">bonitos</span><br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-pwMagenta to-[#ff3b8f] text-glow">bonitos</span><br>
           não pagam<br>
           as contas<br>
           da sua<br>
           empresa.
         </h2>
       </div>
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Arraste para o lado</span>
-        <svg class="w-3.5 h-3.5 text-pwMagenta animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
-        </svg>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[8px] text-pwMuted uppercase tracking-[0.15em] font-bold">Foque em faturamento</span>
+        <div class="flex items-center gap-1.5">
+          <span class="text-[8px] text-pwMuted uppercase tracking-wider font-bold">Arraste</span>
+          <svg class="w-3.5 h-3.5 text-pwMagenta animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
       </div>
     </section>
 
     <!-- SLIDE 2 (O Problema) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">A DOR</span>
-        <span class="text-[10px] tracking-widest text-pwMuted font-mono">02/04</span>
+    <section class="w-full aspect-[4/5] bg-gradient-to-b from-[#0e0e12] to-pwInk border border-white/[0.08] rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="absolute right-6 bottom-4 text-[10rem] font-extrabold text-white/[0.015] select-none leading-none font-display">02</div>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[9px] tracking-[0.25em] text-pwMagenta font-black uppercase font-sans">A DOR</span>
+        <span class="text-[9px] tracking-widest text-pwMuted font-mono font-bold">02/04</span>
       </div>
-      <div class="my-auto">
-        <p class="text-[10px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-4">A verdade nua e crua:</p>
-        <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream mb-5">
-          O mercado está cheio de agências que entregam layouts cheios de efeitos visuais...
-        </h3>
+      
+      <div class="my-auto z-10 space-y-4">
+        <div>
+          <p class="text-[9px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-1.5 font-sans">A verdade nua e crua:</p>
+          <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream">
+            O mercado está cheio de layouts cheios de efeitos visuais...
+          </h3>
+        </div>
+        
+        <!-- Widget Visual da Dor (Diferencial) -->
+        <div class="bg-black/35 border border-white/5 rounded-2xl p-4 space-y-3 font-sans">
+          <div class="flex justify-between items-center text-[8px] tracking-wider">
+            <span class="text-pwMuted uppercase font-bold">Auditoria de Agência Comum</span>
+            <span class="text-red-500 font-bold flex items-center gap-1">
+              <span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-ping"></span> REJEITADO
+            </span>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="bg-red-500/5 border border-red-500/10 rounded-xl p-2.5 text-center">
+              <p class="text-[7px] text-pwMuted font-bold uppercase">VELOCIDADE</p>
+              <p class="text-[11px] font-extrabold text-red-400 mt-0.5">5.8s</p>
+            </div>
+            <div class="bg-red-500/5 border border-red-500/10 rounded-xl p-2.5 text-center">
+              <p class="text-[7px] text-pwMuted font-bold uppercase">CONVERSÃO</p>
+              <p class="text-[11px] font-extrabold text-red-400 mt-0.5">Quase Zero</p>
+            </div>
+            <div class="bg-red-500/5 border border-red-500/10 rounded-xl p-2.5 text-center">
+              <p class="text-[7px] text-pwMuted font-bold uppercase">CÓDIGO</p>
+              <p class="text-[11px] font-extrabold text-red-400 mt-0.5">Engessado</p>
+            </div>
+          </div>
+        </div>
+        
         <p class="text-pwMuted text-xs leading-relaxed font-sans">
-          Mas com carregamento lento, textos confusos e zero foco em conversão de leads e faturamento.
+          Sites bonitos mas lentos perdem o cliente antes do primeiro clique.
         </p>
       </div>
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Próximo slide</span>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[8px] text-pwMuted uppercase tracking-[0.15em] font-bold">O design deve converter</span>
+        <span class="text-[8px] text-pwMuted uppercase tracking-wider font-bold">Continuar</span>
       </div>
     </section>
 
     <!-- SLIDE 3 (O Manifesto/Solução) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">SOLUÇÃO</span>
-        <span class="text-[10px] tracking-widest text-pwMuted font-mono">03/04</span>
+    <section class="w-full aspect-[4/5] bg-gradient-to-b from-[#0e0e12] to-pwInk border border-white/[0.08] rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="absolute -right-16 -top-16 w-64 h-64 bg-pwMagenta/5 rounded-full filter blur-3xl pointer-events-none"></div>
+      <div class="absolute right-6 bottom-4 text-[10rem] font-extrabold text-white/[0.015] select-none leading-none font-display">03</div>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[9px] tracking-[0.25em] text-pwMagenta font-black uppercase font-sans">O MANIFESTO</span>
+        <span class="text-[9px] tracking-widest text-pwMuted font-mono font-bold">03/04</span>
       </div>
-      <div class="my-auto">
-        <p class="text-[10px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-4">Nossa resposta</p>
-        <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream mb-4">
-          Nós nascemos para acabar com isso.
-        </h3>
-        <p class="text-pwCream text-xs leading-relaxed font-sans mb-4">
-          Desenvolvemos produtos digitais eficientes, escaláveis, focados em UX e engenharia de alta performance.
-        </p>
-        <p class="text-pwMuted text-xs leading-relaxed font-sans">
-          Entregamos páginas que convertem cliques em <span class="text-pwMagenta font-bold">faturamento real</span> para seu negócio.
-        </p>
+      
+      <div class="my-auto z-10 space-y-4">
+        <div>
+          <p class="text-[9px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-1.5 font-sans">Nosso compromisso:</p>
+          <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream">
+            Nós nascemos para acabar com isso.
+          </h3>
+        </div>
+        
+        <!-- Lista de Diferenciais Técnicos -->
+        <div class="space-y-2 font-sans text-xs">
+          <div class="flex items-center gap-3 bg-white/[0.03] border border-white/5 rounded-xl p-3">
+            <span class="text-pwMagenta font-black text-sm">⚡</span>
+            <div>
+              <p class="font-bold text-pwCream text-[11px]">Código Limpo e Otimizado</p>
+              <p class="text-[9px] text-pwMuted">Velocidade sub-segundo (Performance 98+)</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 bg-white/[0.03] border border-white/5 rounded-xl p-3">
+            <span class="text-pwMagenta font-black text-sm">🎯</span>
+            <div>
+              <p class="font-bold text-pwCream text-[11px]">Foco Absoluto em Vendas</p>
+              <p class="text-[9px] text-pwMuted">UX pensada para guiar o cliente até a conversão</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Como começar</span>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[8px] text-pwMuted uppercase tracking-[0.15em] font-bold">Alta Performance & Design</span>
+        <span class="text-[8px] text-pwMuted uppercase tracking-wider font-bold">Próximo</span>
       </div>
     </section>
 
     <!-- SLIDE 4 (CTA) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">AÇÃO</span>
-        <span class="text-[10px] tracking-widest text-pwMuted font-mono">04/04</span>
+    <section class="w-full aspect-[4/5] bg-gradient-to-b from-[#0e0e12] to-pwInk border border-white/[0.08] rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="absolute right-6 bottom-4 text-[10rem] font-extrabold text-white/[0.015] select-none leading-none font-display">04</div>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[9px] tracking-[0.25em] text-pwMagenta font-black uppercase font-sans">AÇÃO</span>
+        <span class="text-[9px] tracking-widest text-pwMuted font-mono font-bold">04/04</span>
       </div>
-      <div class="my-auto flex flex-col w-full">
-        <h3 class="text-3xl font-extrabold tracking-tighter leading-[0.95] uppercase font-display text-pwCream mb-4">
+      
+      <div class="my-auto z-10 space-y-4">
+        <h3 class="text-3xl font-extrabold tracking-tighter leading-[0.95] uppercase font-display text-pwCream">
           Quer parar de<br>
-          <span class="text-pwMagenta">queimar</span><br>
+          <span class="text-pwMagenta text-glow">queimar</span><br>
           dinheiro?
         </h3>
-        <p class="text-pwMuted text-xs leading-relaxed font-sans mb-6">
-          Toque no link da bio e garanta o seu diagnóstico gratuito de 20 minutos com a nossa equipe.
-        </p>
-        <a href="https://wa.me/5567999999999" class="w-full py-3.5 bg-pwMagenta hover:bg-opacity-90 active:scale-[0.98] transition-all text-[#F4EFE6] text-center font-bold text-[10px] tracking-widest uppercase rounded-xl shadow-lg font-sans">
-          Reservar Diagnóstico
+        
+        <!-- Card do Diagnóstico -->
+        <div class="bg-gradient-to-b from-[#15151a] to-pwInk border border-pwMagenta/20 rounded-2xl p-4 space-y-3 font-sans shadow-xl">
+          <div class="flex justify-between items-center border-b border-white/5 pb-2">
+            <div>
+              <p class="text-[10px] font-bold text-pwCream">Diagnóstico de UX & Performance</p>
+              <p class="text-[8px] text-pwMuted">Análise técnica gratuita</p>
+            </div>
+            <span class="bg-pwMagenta/15 text-pwMagenta text-[7px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">Gratuito</span>
+          </div>
+          <div class="flex justify-between items-center text-[10px]">
+            <span class="text-pwMuted">Duração</span>
+            <span class="font-extrabold text-pwCream">20 minutos</span>
+          </div>
+          <div class="flex justify-between items-center text-[10px]">
+            <span class="text-pwMuted">Vagas Semanais</span>
+            <span class="font-extrabold text-pwMagenta">Apenas 3 Restantes</span>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5567999999999" class="w-full block py-3.5 bg-pwMagenta hover:bg-opacity-95 active:scale-[0.98] transition-all text-[#F4EFE6] text-center font-bold text-[9px] tracking-widest uppercase rounded-xl shadow-[0_0_20px_rgba(255,5,112,0.25)] font-sans">
+          Garantir Meu Diagnóstico
         </a>
       </div>
-      <div class="flex justify-between items-center w-full">
-        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold font-mono">PWLABS.CO</span>
+      
+      <div class="flex justify-between items-center w-full z-10">
+        <span class="text-[8px] text-pwMuted uppercase tracking-[0.15em] font-bold">PWLABS.CO</span>
       </div>
     </section>
 
