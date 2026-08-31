@@ -3,75 +3,149 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PWlabs - Manifesto Carrossel</title>
+  <title>PWLabs — Carrossel Lançamento</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pwInk: '#0C0C0F',
+            pwCream: '#F4EFE6',
+            pwMuted: '#9A958C',
+            pwMagenta: '#FF0570'
+          },
+          fontFamily: {
+            display: ['ES Klarheit Plakat', 'system-ui', 'sans-serif'],
+            sans: ['Geist', 'system-ui', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
   <style>
+    @font-face {
+      font-family: 'ES Klarheit Plakat';
+      src: url('/fonts/ESKlarheitPlakatFP-Extrabold.woff2') format('woff2');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
     body {
-      margin: 0;
-      background-color: #0c0c0f;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-    }
-    h1 {
-      color: #f4efe6;
-      font-family: sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 0;
-    }
-    .slide-container {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      width: 100%;
-      max-width: 400px;
-    }
-    .slide-card {
-      background-color: #15151a;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(244, 239, 230, 0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .slide-label {
-      color: #9a958c;
-      font-family: sans-serif;
-      font-size: 0.9rem;
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      display: block;
+      background-color: #050507;
+      font-family: 'Geist', system-ui, -apple-system, sans-serif;
     }
   </style>
 </head>
-<body>
-  <h1>Manifesto PWLabs</h1>
-  <p style="color: #9a958c; font-family: sans-serif; font-size: 0.9rem; margin-top: 0; text-align: center;">Visualização dos Slides do Carrossel</p>
-  <div class="slide-container">
-    <div class="slide-card">
-      <p class="slide-label">Slide 1 (Capa)</p>
-      <img src="/temp/slide-1.png" alt="Slide 1">
-    </div>
-    <div class="slide-card">
-      <p class="slide-label">Slide 2 (Problema)</p>
-      <img src="/temp/slide-2.png" alt="Slide 2">
-    </div>
-    <div class="slide-card">
-      <p class="slide-label">Slide 3 (Manifesto)</p>
-      <img src="/temp/slide-3.png" alt="Slide 3">
-    </div>
-    <div class="slide-card">
-      <p class="slide-label">Slide 4 (CTA)</p>
-      <img src="/temp/slide-4.png" alt="Slide 4">
-    </div>
-  </div>
+<body class="min-h-screen text-pwCream flex flex-col items-center py-10 px-4 select-none">
+
+  <!-- Header -->
+  <header class="text-center mb-8">
+    <h1 class="text-2xl font-extrabold tracking-tight uppercase font-display text-pwCream">PWLABS INSTAGRAM</h1>
+    <p class="text-xs text-pwMuted mt-1">Protótipo interativo do Post 1 (Manifesto)</p>
+  </header>
+
+  <!-- Container do Carrossel (Visualização Empilhada e Responsiva) -->
+  <main class="w-full max-w-[380px] flex flex-col gap-8">
+    
+    <!-- SLIDE 1 (Capa) -->
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">MANIFESTO</span>
+        <span class="text-[10px] tracking-widest text-pwMuted font-mono">01/04</span>
+      </div>
+      <div class="my-auto">
+        <h2 class="text-4xl font-extrabold tracking-tighter leading-[0.95] uppercase font-display text-pwCream">
+          Sites<br>
+          <span class="text-pwMagenta">bonitos</span><br>
+          não pagam<br>
+          as contas<br>
+          da sua<br>
+          empresa.
+        </h2>
+      </div>
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Arraste para o lado</span>
+        <svg class="w-3.5 h-3.5 text-pwMagenta animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- SLIDE 2 (O Problema) -->
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">A DOR</span>
+        <span class="text-[10px] tracking-widest text-pwMuted font-mono">02/04</span>
+      </div>
+      <div class="my-auto">
+        <p class="text-[10px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-4">A verdade nua e crua:</p>
+        <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream mb-5">
+          O mercado está cheio de agências que entregam layouts cheios de efeitos visuais...
+        </h3>
+        <p class="text-pwMuted text-xs leading-relaxed font-sans">
+          Mas com carregamento lento, textos confusos e zero foco em conversão de leads e faturamento.
+        </p>
+      </div>
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Próximo slide</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3 (O Manifesto/Solução) -->
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">SOLUÇÃO</span>
+        <span class="text-[10px] tracking-widest text-pwMuted font-mono">03/04</span>
+      </div>
+      <div class="my-auto">
+        <p class="text-[10px] text-pwMagenta font-bold uppercase tracking-[0.15em] mb-4">Nossa resposta</p>
+        <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream mb-4">
+          Nós nascemos para acabar com isso.
+        </h3>
+        <p class="text-pwCream text-xs leading-relaxed font-sans mb-4">
+          Desenvolvemos produtos digitais eficientes, escaláveis, focados em UX e engenharia de alta performance.
+        </p>
+        <p class="text-pwMuted text-xs leading-relaxed font-sans">
+          Entregamos páginas que convertem cliques em <span class="text-pwMagenta font-bold">faturamento real</span> para seu negócio.
+        </p>
+      </div>
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold">Como começar</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4 (CTA) -->
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/10 rounded-3xl p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[10px] tracking-[0.2em] text-pwMagenta font-bold uppercase font-sans">AÇÃO</span>
+        <span class="text-[10px] tracking-widest text-pwMuted font-mono">04/04</span>
+      </div>
+      <div class="my-auto flex flex-col w-full">
+        <h3 class="text-3xl font-extrabold tracking-tighter leading-[0.95] uppercase font-display text-pwCream mb-4">
+          Quer parar de<br>
+          <span class="text-pwMagenta">queimar</span><br>
+          dinheiro?
+        </h3>
+        <p class="text-pwMuted text-xs leading-relaxed font-sans mb-6">
+          Toque no link da bio e garanta o seu diagnóstico gratuito de 20 minutos com a nossa equipe.
+        </p>
+        <a href="https://wa.me/5567999999999" class="w-full py-3.5 bg-pwMagenta hover:bg-opacity-90 active:scale-[0.98] transition-all text-[#F4EFE6] text-center font-bold text-[10px] tracking-widest uppercase rounded-xl shadow-lg font-sans">
+          Reservar Diagnóstico
+        </a>
+      </div>
+      <div class="flex justify-between items-center w-full">
+        <span class="text-[9px] text-pwMuted uppercase tracking-wider font-semibold font-mono">PWLABS.CO</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Info -->
+  <footer class="mt-12 text-center text-[10px] text-pwMuted">
+    <p>© 2026 PWLabs. Imagens renderizadas com fontes da marca via web.</p>
+  </footer>
+
 </body>
 </html>
