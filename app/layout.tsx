@@ -12,6 +12,7 @@ const klarheitPlakat = localFont({
   variable: '--font-klarheit',
   weight: '800',
   display: 'swap',
+  preload: true,
 });
 
 
@@ -100,23 +101,23 @@ export default function RootLayout({
           />
         )}
 
-        {/* Google Analytics 4 */}
+        {/* Google Analytics 4 - carregamento lazy para não impactar LCP */}
         {gaId && (
           <>
             <Script
               async
               src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
             <Script
               id="ga-script"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
               dangerouslySetInnerHTML={{
                 __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
-                  gtag('config', '${gaId}');
+                  gtag('config', '${gaId}', { send_page_view: false });
                 `,
               }}
             />
