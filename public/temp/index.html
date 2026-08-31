@@ -3,555 +3,335 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PWLabs — Do Stitch ao Código</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>PWLabs — Post 1: Manifesto</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pwInk: '#0C0C0F',
+            pwCream: '#F4EFE6',
+            pwMuted: '#8A857C',
+            pwMagenta: '#FF0570',
+            pwMagentaSoft: '#FF99C3',
+            pwCard: '#111116',
+            pwBorder: 'rgba(255,255,255,0.06)',
+          },
+          fontFamily: {
+            display: ['"ES Klarheit Plakat"', 'system-ui', 'sans-serif'],
+            sans: ['Geist', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
   <style>
     @font-face {
       font-family: 'ES Klarheit Plakat';
-      src: url('https://pwlabs.vercel.app/fonts/ESKlarheitPlakatFP-Extrabold.woff2') format('woff2');
+      src: url('/fonts/ESKlarheitPlakatFP-Extrabold.woff2') format('woff2');
       font-weight: 800;
       font-display: swap;
     }
-
-    :root {
-      --ink: #0C0C0F;
-      --cream: #F4EFE6;
-      --muted: #8A857C;
-      --magenta: #FF0570;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Geist Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--ink);
-      color: var(--cream);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
+      background: #050507;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-
-    .carousel-container {
-      width: 100%;
-      max-width: 380px;
-      aspect-ratio: 4 / 5;
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-      background: var(--ink);
-    }
-
-    .slide {
+    /* Subtle noise texture overlay */
+    .noise::after {
+      content: '';
       position: absolute;
       inset: 0;
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr auto;
-      padding: 1.5rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      pointer-events: none;
+      border-radius: inherit;
     }
-
-    .slide.active {
-      opacity: 1;
-      visibility: visible;
+    /* Glow pulse for accents */
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.35; }
     }
-
-    .slide-content {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
+    .glow-bg {
+      animation: glow-pulse 6s ease-in-out infinite;
     }
-
-    .slide-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      order: -1;
+    /* Loading bar animation */
+    @keyframes load-slow {
+      0% { width: 0; }
+      100% { width: 62%; }
     }
-
-    .slide-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(244, 239, 230, 0.12);
+    @keyframes load-fast {
+      0% { width: 0; }
+      100% { width: 100%; }
     }
-
-    .slide-number {
-      font-family: 'ES Klarheit Plakat', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    .slide-arrow {
-      color: var(--muted);
-      font-size: 1.2rem;
-    }
-
-    /* Tipografia */
-    .title {
-      font-family: 'ES Klarheit Plakat', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 800;
-      line-height: 0.88;
-      letter-spacing: -0.03em;
-      color: var(--cream);
-    }
-
-    .title .highlight {
-      color: var(--magenta);
-    }
-
-    .subtitle {
-      font-size: 0.9rem;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    /* Slide 1: Capa */
-    .slide-capa .slide-content {
-      justify-content: center;
-      text-align: center;
-    }
-
-    .slide-capa .title {
-      font-size: 1.4rem;
-    }
-
-    /* SVG Ilustração conexão */
-    .connection-svg {
-      width: 140px;
-      height: 140px;
-    }
-
-    /* Slide 2: Problema - Wireframe torto */
-    .wireframe-mock {
-      width: 160px;
-      height: 120px;
-      background: #1a1a1f;
-      border-radius: 8px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border: 1px solid rgba(244, 239, 230, 0.1);
-    }
-
-    .wireframe-block {
-      background: #2a2a30;
-      border-radius: 4px;
-    }
-
-    .wireframe-block:nth-child(1) { height: 20px; width: 70%; }
-    .wireframe-block:nth-child(2) { height: 12px; width: 90%; transform: rotate(-2deg); }
-    .wireframe-block:nth-child(3) { height: 12px; width: 60%; transform: rotate(1deg); }
-    .wireframe-block:nth-child(4) { height: 30px; width: 85%; border-left: 3px solid var(--magenta); }
-
-    .wireframe-red-x {
-      position: absolute;
-      color: var(--magenta);
-      font-size: 2rem;
-      font-weight: 300;
-    }
-
-    /* Slide 3: Stitch Mockup */
-    .stitch-mock {
-      width: 170px;
-      height: 110px;
-      background: #0d0d10;
-      border-radius: 8px;
-      border: 1px solid rgba(244, 239, 230, 0.15);
-      overflow: hidden;
-      display: flex;
-    }
-
-    .stitch-sidebar {
-      width: 40px;
-      background: #151518;
-      border-right: 1px solid rgba(244, 239, 230, 0.1);
-      padding: 8px 6px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .stitch-layer {
-      height: 6px;
-      background: rgba(244, 239, 230, 0.2);
-      border-radius: 2px;
-    }
-
-    .stitch-layer.active {
-      background: var(--magenta);
-    }
-
-    .stitch-main {
-      flex: 1;
-      padding: 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .stitch-ruler {
-      height: 4px;
-      background: rgba(244, 239, 230, 0.1);
-      border-radius: 2px;
-    }
-
-    .stitch-component {
-      height: 40px;
-      background: linear-gradient(135deg, var(--cream) 0%, #d4cec4 100%);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .stitch-component span {
-      font-size: 0.5rem;
-      font-weight: 700;
-      color: var(--ink);
-      letter-spacing: 0.05em;
-    }
-
-    /* Slide 4: Code Editor */
-    .code-mock {
-      width: 170px;
-      height: 110px;
-      background: #0d0d10;
-      border-radius: 8px;
-      border: 1px solid rgba(244, 239, 230, 0.15);
-      overflow: hidden;
-      font-family: 'Geist Mono', 'SF Mono', monospace;
-    }
-
-    .code-header {
-      height: 20px;
-      background: #151518;
-      border-bottom: 1px solid rgba(244, 239, 230, 0.1);
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      gap: 6px;
-    }
-
-    .code-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    .code-dot.red { background: #ff5f57; }
-    .code-dot.yellow { background: #febc2e; }
-    .code-dot.green { background: #28c840; }
-
-    .code-body {
-      padding: 10px;
-      font-size: 0.55rem;
-      line-height: 1.6;
-    }
-
-    .code-keyword { color: #ff79c6; }
-    .code-tag { color: #8be9fd; }
-    .code-attr { color: #50fa7b; }
-    .code-string { color: #f1fa8c; }
-
-    /* Slide 5: CTA */
-    .slide-cta .slide-content {
-      justify-content: center;
-      text-align: center;
-      gap: 1.5rem;
-    }
-
-    .cta-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 1.75rem;
-      background: var(--cream);
-      color: var(--ink);
-      font-size: 0.85rem;
-      font-weight: 700;
-      border-radius: 50px;
-      text-decoration: none;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(244, 239, 230, 0.25);
-    }
-
-    /* Navegação */
-    .nav-dots {
-      display: flex;
-      gap: 8px;
-      margin-top: 1.5rem;
-    }
-
-    .nav-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--muted);
-      opacity: 0.4;
-      cursor: pointer;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .nav-dot.active {
-      opacity: 1;
-      background: var(--magenta);
-      transform: scale(1.2);
-    }
-
-    .nav-arrows {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .nav-arrow {
-      background: transparent;
-      border: 1px solid rgba(244, 239, 230, 0.2);
-      color: var(--cream);
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .nav-arrow:hover {
-      background: rgba(244, 239, 230, 0.1);
-      border-color: var(--cream);
-    }
+    .bar-slow { animation: load-slow 4s ease-out infinite; }
+    .bar-fast { animation: load-fast 0.6s ease-out infinite; }
+    /* Slide counter dot */
+    .dot-active { background: #F4EFE6; }
+    .dot-inactive { background: rgba(255,255,255,0.15); }
   </style>
 </head>
-<body>
 
-  <div class="carousel-container">
-    <!-- Slide 1: Capa -->
-    <div class="slide slide-capa active" data-slide="0">
-      <div class="slide-content">
-        <div class="slide-visual">
-          <svg class="connection-svg" viewBox="0 0 140 140" fill="none">
-            <circle cx="70" cy="70" r="25" stroke="#FF0570" stroke-width="1.5" fill="none" opacity="0.6"/>
-            <circle cx="40" cy="45" r="12" stroke="#F4EFE6" stroke-width="1" fill="none" opacity="0.4"/>
-            <circle cx="100" cy="95" r="12" stroke="#F4EFE6" stroke-width="1" fill="none" opacity="0.4"/>
-            <circle cx="100" cy="45" r="10" stroke="#F4EFE6" stroke-width="1" fill="none" opacity="0.3"/>
-            <circle cx="40" cy="95" r="10" stroke="#F4EFE6" stroke-width="1" fill="none" opacity="0.3"/>
-            <line x1="40" y1="45" x2="70" y2="70" stroke="#FF0570" stroke-width="1" opacity="0.5"/>
-            <line x1="100" y1="95" x2="70" y2="70" stroke="#FF0570" stroke-width="1" opacity="0.5"/>
-            <line x1="100" y1="45" x2="70" y2="70" stroke="#F4EFE6" stroke-width="0.5" opacity="0.3"/>
-            <line x1="40" y1="95" x2="70" y2="70" stroke="#F4EFE6" stroke-width="0.5" opacity="0.3"/>
-            <line x1="40" y1="45" x2="100" y2="95" stroke="#F4EFE6" stroke-width="0.5" opacity="0.2"/>
-          </svg>
-        </div>
-        <h1 class="title">A ponte invisível que faz nossos sites ficarem prontos em <span class="highlight">15 dias</span>.</h1>
-      </div>
-      <div class="slide-footer">
-        <span class="slide-number">01.05 / DESENVOLVIMENTO</span>
-        <span class="slide-arrow">→</span>
-      </div>
+<body class="min-h-screen text-pwCream flex flex-col items-center py-10 px-4 select-none font-sans">
+
+  <!-- Page Header -->
+  <header class="text-center mb-8 space-y-1">
+    <!-- Inline PWLabs Logo (compact) -->
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <svg width="28" height="28" viewBox="0 0 161 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.6136 359.999 38.7669 359.83 37.9771 359.501C37.1874 359.173 36.4702 358.692 35.8667 358.086C35.261 357.486 34.781 356.771 34.4545 355.983C34.128 355.195 33.9615 354.351 33.9649 353.498C33.9649 353.232 33.9649 352.953 33.9649 352.699L34.434 350.95L54.0603 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272L161.65 170.183Z" fill="#F4EFE6"/>
+        <path d="M127.203 6.489C127.203 7.111 127.118 7.729 126.949 8.327V8.454L107.184 81.752H73.205C71.821 81.754 70.473 82.196 69.357 83.014C68.24 83.832 67.412 84.983 66.993 86.302L66.828 86.949L46.188 163.656L41.788 179.994L37.313 196.331H6.517C4.79 196.325 3.137 195.636 1.916 194.416C0.695 193.196 0.007 191.542 0 189.817C0.003 189.39 0.05 188.966 0.139 188.549L0.304 187.915L2.422 180.057L6.884 163.656L28.97 81.815L49.738 4.652V4.512C50.163 3.202 50.992 2.061 52.105 1.25C53.219 0.44 54.56 0.002 55.937 0H120.598C121.453 0.001 122.3 0.17 123.089 0.499C123.879 0.827 124.596 1.308 125.2 1.914C125.822 2.504 126.32 3.213 126.664 3.999C127.008 4.785 127.192 5.632 127.203 6.489Z" fill="#0C0C0F"/>
+        <path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/>
+        <path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389V270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/>
+      </svg>
+      <span class="text-sm font-extrabold tracking-[0.2em] uppercase font-display text-pwCream">PWLABS</span>
     </div>
+    <p class="text-[9px] text-pwMuted uppercase tracking-[0.3em]">Post 01 — Manifesto da Marca</p>
+  </header>
 
-    <!-- Slide 2: O Problema -->
-    <div class="slide slide-problema" data-slide="1">
-      <div class="slide-content">
-        <div class="slide-visual">
-          <div class="wireframe-mock">
-            <div class="wireframe-block"></div>
-            <div class="wireframe-block"></div>
-            <div class="wireframe-block"></div>
-            <div class="wireframe-block"></div>
-            <span class="wireframe-red-x" style="top: 20px; right: 15px;">×</span>
+  <!-- Carousel Container (Stacked Preview) -->
+  <main class="w-full max-w-[380px] flex flex-col gap-10">
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- SLIDE 1 · CAPA                                  -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="relative w-full aspect-[4/5] bg-pwInk border border-pwBorder rounded-[28px] overflow-hidden shadow-2xl noise">
+
+      <!-- Ambient glow -->
+      <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-pwMagenta/20 rounded-full blur-[100px] glow-bg"></div>
+
+      <div class="relative z-10 h-full flex flex-col justify-between p-7">
+        <!-- Top bar -->
+        <div class="flex justify-between items-center">
+          <svg width="20" height="20" viewBox="0 0 161 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.614 359.999 38.767 359.83 37.977 359.501C37.187 359.173 36.47 358.692 35.867 358.086C35.261 357.486 34.781 356.771 34.455 355.983C34.128 355.195 33.962 354.351 33.965 353.498C33.965 353.232 33.965 352.953 33.965 352.699L34.434 350.95L54.06 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272L161.65 170.183Z" fill="#F4EFE6"/>
+            <path d="M127.203 6.489C127.203 7.111 127.118 7.729 126.949 8.327V8.454L107.184 81.752H73.205C71.821 81.754 70.473 82.196 69.357 83.014C68.24 83.832 67.412 84.983 66.993 86.302L66.828 86.949L46.188 163.656L41.788 179.994L37.313 196.331H6.517C4.79 196.325 3.137 195.636 1.916 194.416C0.695 193.196 0.007 191.542 0 189.817C0.003 189.39 0.05 188.966 0.139 188.549L0.304 187.915L2.422 180.057L6.884 163.656L28.97 81.815L49.738 4.652V4.512C50.163 3.202 50.992 2.061 52.105 1.25C53.219 0.44 54.56 0.002 55.937 0H120.598C121.453 0.001 122.3 0.17 123.089 0.499C123.879 0.827 124.596 1.308 125.2 1.914C125.822 2.504 126.32 3.213 126.664 3.999C127.008 4.785 127.192 5.632 127.203 6.489Z" fill="#0C0C0F"/>
+            <path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/>
+            <path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/>
+          </svg>
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold">01 / 04</span>
+        </div>
+
+        <!-- Main content -->
+        <div class="space-y-5 my-auto">
+          <h2 class="text-[28px] font-extrabold tracking-[-0.04em] leading-[0.92] uppercase font-display">
+            Sites <span class="text-pwMagenta">bonitos</span><br>
+            não pagam<br>
+            as contas da<br>
+            sua empresa.
+          </h2>
+          <!-- 3D Hero Asset -->
+          <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.08] shadow-lg">
+            <img src="/assets/slide1-asset.jpg" alt="" class="w-full h-full object-cover" loading="eager">
           </div>
         </div>
-        <div>
-          <h2 class="title" style="font-size: 1.15rem;">A maioria dos desenvolvedores cria páginas do zero ou usa templates prontos e engessados.</h2>
-          <p class="subtitle" style="margin-top: 0.75rem;">O resultado é um site desalinhado com o design ou lento demais para o usuário.</p>
+
+        <!-- Bottom bar -->
+        <div class="flex justify-between items-end">
+          <span class="text-[7px] text-pwMuted uppercase tracking-[0.25em] font-bold leading-tight">Foque em<br>faturamento.</span>
+          <div class="flex items-center gap-1.5">
+            <!-- Carousel dots -->
+            <span class="w-1.5 h-1.5 rounded-full dot-active"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+          </div>
         </div>
       </div>
-      <div class="slide-footer">
-        <span class="slide-number">02.05 / O ERRO</span>
-        <span class="slide-arrow">→</span>
-      </div>
-    </div>
+    </section>
 
-    <!-- Slide 3: Nosso Ecossistema -->
-    <div class="slide slide-stitch" data-slide="2">
-      <div class="slide-content">
-        <div class="slide-visual">
-          <div class="stitch-mock">
-            <div class="stitch-sidebar">
-              <div class="stitch-layer"></div>
-              <div class="stitch-layer active"></div>
-              <div class="stitch-layer"></div>
-              <div class="stitch-layer"></div>
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- SLIDE 2 · O PROBLEMA                            -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="relative w-full aspect-[4/5] bg-pwInk border border-pwBorder rounded-[28px] overflow-hidden shadow-2xl noise">
+
+      <div class="relative z-10 h-full flex flex-col justify-between p-7">
+        <!-- Top bar -->
+        <div class="flex justify-between items-center">
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold uppercase">O Fato</span>
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold">02 / 04</span>
+        </div>
+
+        <!-- Main content -->
+        <div class="space-y-5 my-auto">
+          <h3 class="text-[22px] font-extrabold tracking-[-0.03em] leading-[1.05] font-display">
+            A maioria das agências foca em estética.<br>
+            <span class="text-pwMuted">Nós focamos em faturamento.</span>
+          </h3>
+
+          <!-- Split: 3D Asset + Pain Points -->
+          <div class="grid grid-cols-5 gap-3 items-stretch">
+            <div class="col-span-2 rounded-xl overflow-hidden border border-white/[0.06]">
+              <img src="/assets/slide2-asset.jpg" alt="" class="w-full h-full object-cover">
             </div>
-            <div class="stitch-main">
-              <div class="stitch-ruler"></div>
-              <div class="stitch-ruler"></div>
-              <div class="stitch-ruler"></div>
-              <div class="stitch-component">
-                <span>PWLABS</span>
+            <div class="col-span-3 flex flex-col justify-center border-l border-white/10 pl-3 space-y-3">
+              <div>
+                <p class="text-[9px] font-bold uppercase tracking-wider text-red-400">Lento</p>
+                <div class="mt-1 h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
+                  <div class="h-full bg-red-500/70 rounded-full bar-slow"></div>
+                </div>
+                <p class="text-[8px] text-pwMuted mt-1">5.8s de carregamento</p>
+              </div>
+              <div>
+                <p class="text-[9px] font-bold uppercase tracking-wider text-red-400">-53% Tráfego</p>
+                <p class="text-[8px] text-pwMuted mt-0.5 leading-relaxed">Visitantes abandonam antes de ver o conteúdo.</p>
               </div>
             </div>
           </div>
         </div>
-        <div>
-          <h2 class="title" style="font-size: 1.15rem;">Desenhamos a interface componentizada no Stitch.</h2>
-          <p class="subtitle" style="margin-top: 0.75rem;">Isso garante consistência visual absoluta e um Design System impecável antes de escrever a primeira linha de código.</p>
-        </div>
-      </div>
-      <div class="slide-footer">
-        <span class="slide-number">03.05 / DESIGN SYSTEM</span>
-        <span class="slide-arrow">→</span>
-      </div>
-    </div>
 
-    <!-- Slide 4: A Tradução -->
-    <div class="slide slide-code" data-slide="3">
-      <div class="slide-content">
-        <div class="slide-visual">
-          <div class="code-mock">
-            <div class="code-header">
-              <span class="code-dot red"></span>
-              <span class="code-dot yellow"></span>
-              <span class="code-dot green"></span>
-            </div>
-            <div class="code-body">
-              <span class="code-keyword">export</span> <span class="code-keyword">function</span> <span class="code-tag">Hero</span>() {<br>
-              &nbsp;&nbsp;<span class="code-keyword">return</span> (<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-tag">section</span> <span class="code-attr">class</span>=<span class="code-string">"hero"</span>&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;<span class="code-tag">h1</span>&gt;PWlabs&lt;/<span class="code-tag">h1</span>&gt;<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;&lt;/<span class="code-tag">section</span>&gt;<br>
-              &nbsp;&nbsp;);<br>
-              }
-            </div>
+        <!-- Bottom bar -->
+        <div class="flex justify-between items-end">
+          <span class="text-[7px] text-pwMuted uppercase tracking-[0.25em] font-bold">A dor do mercado</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-active"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
           </div>
         </div>
-        <div>
-          <h2 class="title" style="font-size: 1.15rem;">Traduzimos o design direto para código limpo no Next.js.</h2>
-          <p class="subtitle" style="margin-top: 0.75rem;">Componentes modulares de alta performance que carregam em menos de 1 segundo (Performance 98+).</p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- SLIDE 3 · A SOLUÇÃO                             -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="relative w-full aspect-[4/5] bg-pwInk border border-pwBorder rounded-[28px] overflow-hidden shadow-2xl noise">
+
+      <!-- Green ambient glow -->
+      <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-emerald-500/15 rounded-full blur-[80px] glow-bg"></div>
+
+      <div class="relative z-10 h-full flex flex-col justify-between p-7">
+        <!-- Top bar -->
+        <div class="flex justify-between items-center">
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold uppercase">Engenharia</span>
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold">03 / 04</span>
+        </div>
+
+        <!-- Main content -->
+        <div class="space-y-5 my-auto">
+          <h3 class="text-[22px] font-extrabold tracking-[-0.03em] leading-[1.05] font-display">
+            Nós construímos para<br>
+            <span class="text-emerald-400">o seu resultado.</span>
+          </h3>
+
+          <!-- Split: 3D Asset + Solution Points -->
+          <div class="grid grid-cols-5 gap-3 items-stretch">
+            <div class="col-span-2 rounded-xl overflow-hidden border border-white/[0.06]">
+              <img src="/assets/slide3-asset.jpg" alt="" class="w-full h-full object-cover">
+            </div>
+            <div class="col-span-3 flex flex-col justify-center border-l border-white/10 pl-3 space-y-3">
+              <div>
+                <p class="text-[9px] font-bold uppercase tracking-wider text-emerald-400">Sub-segundo</p>
+                <div class="mt-1 h-1.5 w-full bg-white/[0.06] rounded-full overflow-hidden">
+                  <div class="h-full bg-emerald-500/70 rounded-full bar-fast"></div>
+                </div>
+                <p class="text-[8px] text-pwMuted mt-1">0.4s de carregamento</p>
+              </div>
+              <div>
+                <p class="text-[9px] font-bold uppercase tracking-wider text-pwMagenta">Foco em conversão</p>
+                <p class="text-[8px] text-pwMuted mt-0.5 leading-relaxed">Copywriting estruturado para guiar e reter cada lead.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Performance badges -->
+          <div class="flex gap-2">
+            <span class="px-2.5 py-1 bg-white/[0.04] border border-white/[0.06] rounded-lg text-[8px] font-bold text-pwCream tracking-wider uppercase">Next.js</span>
+            <span class="px-2.5 py-1 bg-white/[0.04] border border-white/[0.06] rounded-lg text-[8px] font-bold text-pwCream tracking-wider uppercase">Lighthouse 98+</span>
+            <span class="px-2.5 py-1 bg-white/[0.04] border border-white/[0.06] rounded-lg text-[8px] font-bold text-pwCream tracking-wider uppercase">UX</span>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="flex justify-between items-end">
+          <span class="text-[7px] text-pwMuted uppercase tracking-[0.25em] font-bold">Engenharia e UX</span>
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-active"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+          </div>
         </div>
       </div>
-      <div class="slide-footer">
-        <span class="slide-number">04.05 / ENGENHARIA</span>
-        <span class="slide-arrow">→</span>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════ -->
+    <!-- SLIDE 4 · CTA                                   -->
+    <!-- ═══════════════════════════════════════════════ -->
+    <section class="relative w-full aspect-[4/5] bg-pwInk border border-pwBorder rounded-[28px] overflow-hidden shadow-2xl noise">
+
+      <!-- Magenta ambient glow -->
+      <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-72 h-72 bg-pwMagenta/15 rounded-full blur-[100px] glow-bg"></div>
+
+      <div class="relative z-10 h-full flex flex-col justify-between p-7">
+        <!-- Top bar -->
+        <div class="flex justify-between items-center">
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold uppercase">Diagnóstico</span>
+          <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold">04 / 04</span>
+        </div>
+
+        <!-- Main content -->
+        <div class="space-y-5 my-auto">
+          <h3 class="text-[24px] font-extrabold tracking-[-0.04em] leading-[0.95] uppercase font-display">
+            Seu site está<br>
+            perdendo vendas<br>
+            <span class="text-pwMagenta">hoje?</span>
+          </h3>
+
+          <!-- Diagnostic card with calendar asset -->
+          <div class="bg-pwCard border border-white/[0.06] rounded-2xl p-4 space-y-3">
+            <div class="grid grid-cols-5 gap-3 items-center">
+              <div class="col-span-2 rounded-xl overflow-hidden border border-white/[0.06]">
+                <img src="/assets/slide4-asset.jpg" alt="" class="w-full h-full object-cover">
+              </div>
+              <div class="col-span-3 space-y-1">
+                <div class="flex items-center gap-2">
+                  <p class="text-[10px] font-bold text-pwCream">Diagnóstico de UX</p>
+                  <span class="bg-pwMagenta/15 text-pwMagenta text-[6px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-widest">Gratuito</span>
+                </div>
+                <p class="text-[8px] text-pwMuted leading-relaxed">
+                  20 minutos online para identificar os maiores gargalos do seu site atual.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="https://wa.me/5567999999999" class="block w-full py-4 bg-pwCream active:scale-[0.97] transition-transform text-pwInk text-center font-extrabold text-[10px] tracking-[0.15em] uppercase rounded-xl font-sans shadow-md">
+            Reservar Diagnóstico Gratuito
+          </a>
+          <p class="text-center text-[7px] text-pwMuted tracking-wider">Apenas 3 vagas disponíveis esta semana.</p>
+        </div>
+
+        <!-- Bottom bar -->
+        <div class="flex justify-between items-end">
+          <!-- Logo mark -->
+          <div class="flex items-center gap-1.5">
+            <svg width="14" height="14" viewBox="0 0 161 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.614 359.999 38.767 359.83 37.977 359.501C37.187 359.173 36.47 358.692 35.867 358.086C35.261 357.486 34.781 356.771 34.455 355.983C34.128 355.195 33.962 354.351 33.965 353.498C33.965 353.232 33.965 352.953 33.965 352.699L34.434 350.95L54.06 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272L161.65 170.183Z" fill="#8A857C"/>
+              <path d="M127.203 6.489C127.203 7.111 127.118 7.729 126.949 8.327V8.454L107.184 81.752H73.205C71.821 81.754 70.473 82.196 69.357 83.014C68.24 83.832 67.412 84.983 66.993 86.302L66.828 86.949L46.188 163.656L41.788 179.994L37.313 196.331H6.517C4.79 196.325 3.137 195.636 1.916 194.416C0.695 193.196 0.007 191.542 0 189.817C0.003 189.39 0.05 188.966 0.139 188.549L0.304 187.915L2.422 180.057L6.884 163.656L28.97 81.815L49.738 4.652V4.512C50.163 3.202 50.992 2.061 52.105 1.25C53.219 0.44 54.56 0.002 55.937 0H120.598C121.453 0.001 122.3 0.17 123.089 0.499C123.879 0.827 124.596 1.308 125.2 1.914C125.822 2.504 126.32 3.213 126.664 3.999C127.008 4.785 127.192 5.632 127.203 6.489Z" fill="#0C0C0F"/>
+              <path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/>
+              <path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/>
+            </svg>
+            <span class="text-[7px] text-pwMuted uppercase tracking-[0.2em] font-bold">pwlabs.co</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
+            <span class="w-1.5 h-1.5 rounded-full dot-active"></span>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Slide 5: CTA -->
-    <div class="slide slide-cta" data-slide="4">
-      <div class="slide-content">
-        <h2 class="title">Quer ver como seu projeto ficaria estruturado no Stitch?</h2>
-        <p class="subtitle">Toque no link da bio e reserve uma sessão rápida de alinhamento com a nossa equipe.</p>
-        <a href="https://pwlabs.vercel.app" class="cta-button">Ver Estrutura no Stitch</a>
-      </div>
-      <div class="slide-footer">
-        <span class="slide-number">05.05 / DIAGNÓSTICO</span>
-        <span class="slide-arrow">→</span>
-      </div>
-    </div>
-  </div>
+  </main>
 
-  <!-- Navegação -->
-  <div class="nav-dots">
-    <div class="nav-dot active" data-index="0"></div>
-    <div class="nav-dot" data-index="1"></div>
-    <div class="nav-dot" data-index="2"></div>
-    <div class="nav-dot" data-index="3"></div>
-    <div class="nav-dot" data-index="4"></div>
-  </div>
-
-  <div class="nav-arrows">
-    <button class="nav-arrow" id="prev-btn">←</button>
-    <button class="nav-arrow" id="next-btn">→</button>
-  </div>
-
-  <script>
-    const slides = document.querySelectorAll('.slide');
-    const dots = document.querySelectorAll('.nav-dot');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-      slides.forEach(slide => slide.classList.remove('active'));
-      dots.forEach(dot => dot.classList.remove('active'));
-
-      slides[index].classList.add('active');
-      dots[index].classList.add('active');
-      currentSlide = index;
-    }
-
-    function nextSlide() {
-      const next = (currentSlide + 1) % totalSlides;
-      showSlide(next);
-    }
-
-    function prevSlide() {
-      const prev = (currentSlide - 1 + totalSlides) % totalSlides;
-      showSlide(prev);
-    }
-
-    prevBtn.addEventListener('click', prevSlide);
-    nextBtn.addEventListener('click', nextSlide);
-
-    dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        showSlide(parseInt(dot.dataset.index));
-      });
-    });
-
-    // Swipe navigation
-    let touchStartX = 0;
-    const container = document.querySelector('.carousel-container');
-
-    container.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
-    });
-
-    container.addEventListener('touchend', (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const diff = touchStartX - touchEndX;
-
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-          nextSlide();
-        } else {
-          prevSlide();
-        }
-      }
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowRight') nextSlide();
-      if (e.key === 'ArrowLeft') prevSlide();
-    });
-  </script>
+  <footer class="mt-10 text-center text-[8px] text-pwMuted/50 tracking-wider">
+    PWLabs © 2026
+  </footer>
 
 </body>
 </html>
