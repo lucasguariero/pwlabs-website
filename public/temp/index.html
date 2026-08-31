@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PWlabs - Manifesto Carrossel</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0c0c0f;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+    }
+    h1 {
+      color: #f4efe6;
+      font-family: sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+    .slide-container {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+      max-width: 400px;
+    }
+    .slide-card {
+      background-color: #15151a;
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(244, 239, 230, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .slide-label {
+      color: #9a958c;
+      font-family: sans-serif;
+      font-size: 0.9rem;
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Manifesto PWLabs</h1>
+  <p style="color: #9a958c; font-family: sans-serif; font-size: 0.9rem; margin-top: 0; text-align: center;">Visualização dos Slides do Carrossel</p>
+  <div class="slide-container">
+    <div class="slide-card">
+      <p class="slide-label">Slide 1 (Capa)</p>
+      <img src="slide-1.png" alt="Slide 1">
+    </div>
+    <div class="slide-card">
+      <p class="slide-label">Slide 2 (Problema)</p>
+      <img src="slide-2.png" alt="Slide 2">
+    </div>
+    <div class="slide-card">
+      <p class="slide-label">Slide 3 (Manifesto)</p>
+      <img src="slide-3.png" alt="Slide 3">
+    </div>
+    <div class="slide-card">
+      <p class="slide-label">Slide 4 (CTA)</p>
+      <img src="slide-4.png" alt="Slide 4">
+    </div>
+  </div>
+</body>
+</html>
