@@ -14,20 +14,20 @@ export type NavItem = {
 export const NAV_ITEMS: NavItem[] = [
   {
     label: "Soluções",
-    href: "#solucoes",
+    href: "/#solucoes",
     children: [
-      { label: "Sites institucionais", href: "#solucoes" },
-      { label: "Lojas virtuais", href: "#solucoes" },
-      { label: "Landing pages", href: "#solucoes" },
-      { label: "Tráfego pago", href: "#solucoes" },
-      { label: "Automação", href: "#solucoes" },
-      { label: "SEO", href: "#solucoes" },
-      { label: "Aplicativos", href: "#solucoes" },
+      { label: "Sites institucionais", href: "/#solucoes" },
+      { label: "Lojas virtuais", href: "/#solucoes" },
+      { label: "Landing pages", href: "/#solucoes" },
+      { label: "Tráfego pago", href: "/#solucoes" },
+      { label: "Automação", href: "/#solucoes" },
+      { label: "SEO", href: "/#solucoes" },
+      { label: "Aplicativos", href: "/#solucoes" },
     ],
   },
-  { label: "Portfólio", href: "#portfolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contato", href: "#contato" },
+  { label: "Portfólio", href: "/#portfolio" },
+  { label: "Blog", href: "/#blog" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 export type Stat = {
@@ -126,6 +126,38 @@ export const SERVICES: Service[] = [
   },
   {
     num: "06",
+    slug: "automacao-whatsapp",
+    icon: "auto",
+    title: "Automação WhatsApp",
+    description: "Chatbot e nutrição automática no WhatsApp Business. Atenda 24/7, qualifique leads e escale suas vendas.",
+    longDescription:
+      "Transforme seu WhatsApp em um vendedor que nunca dorme. Seu WhatsApp perde dinheiro quando você dorme — lead que manda mensagem às 22h e não recebe resposta em 5 minutos já foi pro concorrente. A gente cria chatbots inteligentes que atendem 24/7, identificam necessidade, qualificam por orçamento e horário, agendam consultas e nutrem leads que não fecharam na primeira conversa. Integração com CRM (Pipedrive, RD Station e outros) pra fluxo completo do primeiro contato até o fechamento.",
+    whenMakesSense: [
+      "Você perde muitos leads por falta de atendimento fora do horário",
+      "Respostas demoram e leads somem pra concorrência",
+      "Seu time perde horas respondendo as mesmas perguntas todo dia",
+      "Quer automatizar o primeiro contato e qualificação de clientes",
+      "Precisa nutrir leads sem aumentar headcount",
+    ],
+  },
+  {
+    num: "09",
+    slug: "ia-ecommerce",
+    icon: "seo",
+    title: "IA para E-commerce",
+    description: "Análise inteligente de concorrentes, produtos e precificação via IA. Tome decisões baseadas em dados reais.",
+    longDescription:
+      "Use inteligência artificial pra potencializar as vendas do seu e-commerce. Monitoramos preços, produtos e estratégias dos seus principais concorrentes em tempo real. A IA sugere o melhor preço baseado em demanda, concorrência e margem de lucro. Identificamos quais produtos têm maior potencial com base em tendências de mercado e dashboards com insights acionáveis pra você tomar decisões rápidas. Integramos com Shopify, WooCommerce e outras plataformas.",
+    whenMakesSense: [
+      "Você tem uma loja virtual com +100 produtos e quer otimizar preços",
+      "Precisa entender o que concorrentes estão fazendo em tempo real",
+      "Quer tomar decisões baseadas em dados, não em achismo",
+      "É dono de loja online ou opera marketplace",
+      "Quer identificar produtos com maior potencial de venda",
+    ],
+  },
+  {
+    num: "10",
     slug: "seo",
     icon: "seo",
     title: "SEO",
@@ -139,7 +171,7 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    num: "07",
+    num: "09",
     slug: "identidade-visual",
     icon: "logos",
     title: "Identidade visual",
@@ -153,7 +185,7 @@ export const SERVICES: Service[] = [
     ],
   },
   {
-    num: "08",
+    num: "10",
     slug: "copywriting",
     icon: "copy",
     title: "Copywriting",

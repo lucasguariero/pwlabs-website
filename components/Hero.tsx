@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { WHATSAPP_URL } from "@/lib/data";
 import { useBudget } from "@/components/BudgetProvider";
 
@@ -81,9 +82,13 @@ export function Hero() {
 
           {/* Lado direito — imagem do header */}
           <div className="relative md:w-[120%] md:-mr-[10%]">
-            <img
+            <Image
               src="/assets/pwlabs-header-1.png"
               alt="PWlabs — páginas que vendem"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 900px"
+              style={{ objectFit: "cover", borderRadius: "1rem" }}
               className="w-full h-auto max-w-[900px] rounded-2xl"
             />
           </div>

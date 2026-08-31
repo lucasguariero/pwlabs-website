@@ -109,14 +109,6 @@ export default function LPCriacaoSite() {
               href={WHATSAPP_URL}
               className="btn"
               style={{ background: '#38bdf8', color: '#0f172a', padding: '18px 40px', fontSize: '1.125rem', fontWeight: '600' }}
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  (window as any).gtag("event", "click_whatsapp", {
-                    event_category: "whatsapp",
-                    event_label: "lp_criacao_site",
-                  });
-                }
-              }}
             >
               Pedir orçamento
             </a>

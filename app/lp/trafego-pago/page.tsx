@@ -28,14 +28,6 @@ export default function LPTráfegoPago() {
                   href={WHATSAPP_URL}
                   className="btn"
                   style={{ background: '#fbbf24', color: '#1e1b4b', padding: '16px 32px', fontWeight: '600' }}
-                  onClick={() => {
-                    if (typeof window !== "undefined" && (window as any).gtag) {
-                      (window as any).gtag("event", "click_whatsapp", {
-                        event_category: "whatsapp",
-                        event_label: "lp_trafego_pago",
-                      });
-                    }
-                  }}
                 >
                   Quero resultados
                 </a>
@@ -134,14 +126,6 @@ export default function LPTráfegoPago() {
               href={WHATSAPP_URL}
               className="btn"
               style={{ background: '#fbbf24', color: '#1e1b4b', padding: '18px 40px', fontSize: '1.125rem', fontWeight: '600' }}
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  (window as any).gtag("event", "click_whatsapp", {
-                    event_category: "whatsapp",
-                    event_label: "lp_trafego_pago",
-                  });
-                }
-              }}
             >
               Falar com especialista
             </a>

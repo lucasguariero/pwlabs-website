@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type CoverProps = { slug: string; className?: string };
 
 const CoverImages: Record<string, string> = {
@@ -14,11 +16,14 @@ const CoverImages: Record<string, string> = {
 export function BlogCover({ slug, className }: CoverProps) {
   const src = CoverImages[slug] ?? "/assets/blog/blog-1.jpg";
   return (
-    <img
-      src={src}
-      alt="Capa do artigo"
-      className={className}
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-    />
+    <div className={className} style={{ position: "relative", width: "100%", height: "100%" }}>
+      <Image
+        src={src}
+        alt="Capa do artigo"
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        style={{ objectFit: "cover" }}
+      />
+    </div>
   );
 }

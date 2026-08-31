@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📊 PW Labs - Dashboard Estratégico</title>
+  <style>
+    :root {
+      --pw-magenta: #E91E63;
+      --pw-magenta-dark: #C2185B;
+      --pw-purple: #7B1FA2;
+      --pw-dark: #1a1a2e;
+      --pw-light: #f8f9fa;
+      --pw-gray: #6c757d;
+      --success: #4CAF50;
+      --warning: #FF9800;
+      --danger: #f44336;
+      --info: #2196F3;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0;
+      border-bottom: 2px solid var(--pw-magenta);
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--pw-magenta), var(--pw-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: var(--pw-gray);
+      font-size: 1.1rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-tab {
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab:hover, .nav-tab.active {
+      background: var(--pw-magenta);
+      border-color: var(--pw-magenta);
+      transform: translateY(-2px);
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.3s;
+    }
+
+    .section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin: 20px 0 12px;
+      color: var(--pw-magenta);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, var(--pw-magenta-dark), var(--pw-purple));
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+
+    .stat-card .label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .tag-success { background: rgba(76, 175, 80, 0.2); color: var(--success); }
+    .tag-warning { background: rgba(255, 152, 0, 0.2); color: var(--warning); }
+    .tag-danger { background: rgba(244, 67, 54, 0.2); color: var(--danger); }
+    .tag-info { background: rgba(33, 150, 243, 0.2); color: var(--info); }
+    .tag-magenta { background: rgba(233, 30, 99, 0.2); color: var(--pw-magenta); }
+
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .checklist li::before {
+      content: "☐";
+      font-size: 1.2rem;
+      color: var(--pw-magenta);
+    }
+
+    .checklist li.done::before {
+      content: "☑";
+      color: var(--success);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    th {
+      background: rgba(255,255,255,0.05);
+      color: var(--pw-magenta);
+      font-weight: 600;
+    }
+
+    tr:hover { background: rgba(255,255,255,0.02); }
+
+    .priority-badge {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .priority-high { background: var(--danger); }
+    .priority-medium { background: var(--warning); }
+    .priority-low { background: var(--success); }
+
+    .content-pillars {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 16px 0;
+    }
+
+    .pillar {
+      padding: 16px 20px;
+      border-radius: 12px;
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .pillar-edu { background: linear-gradient(135deg, #2196F3, #1976D2); }
+    .pillar-proof { background: linear-gradient(135deg, #4CAF50, #388E3C); }
+    .pillar-bts { background: linear-gradient(135deg, #FF9800, #F57C00); }
+    .pillar-sales { background: linear-gradient(135deg, #E91E63, #C2185B); }
+
+    .pillar .percent { font-size: 2rem; font-weight: bold; }
+    .pillar .name { font-size: 0.9rem; opacity: 0.9; }
+
+    .hashtag-group {
+      background: rgba(255,255,255,0.03);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 8px 0;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+
+    .schedule-table td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .schedule-table .day {
+      font-weight: bold;
+      color: var(--pw-magenta);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--pw-gray);
+      font-size: 0.9rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 40px;
+    }
+
+    .emoji { font-size: 1.2rem; }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      .nav-tabs { gap: 8px; }
+      .nav-tab { padding: 10px 16px; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🚀 PW Labs - Dashboard Estratégico</h1>
+      <p>Docs: Checkpoint • Estratégia Digital • Calendário Instagram</p>
+    </header>
+
+    <nav class="nav-tabs">
+      <a href="#overview" class="nav-tab active" onclick="showSection('overview')">📋 Overview</a>
+      <a href="#checkpoint" class="nav-tab" onclick="showSection('checkpoint')">✅ Checkpoint</a>
+      <a href="#estrategia" class="nav-tab" onclick="showSection('estrategia')">📈 Estratégia</a>
+      <a href="#instagram" class="nav-tab" onclick="showSection('instagram')">📸 Instagram</a>
+    </nav>
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="section active">
+      <div class="grid-3">
+        <div class="stat-card">
+          <div class="number">5</div>
+          <div class="label">🆕 Páginas Criadas</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">8</div>
+          <div class="label">📄 Serviços Mapeados</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">3</div>
+          <div class="label">📱 Canais de Tráfego</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🎯 Resumo Executivo</h2>
+        <p style="margin-bottom: 16px;">
+          A PW Labs está se posicionando como <strong>agência completa de digital</strong>:
+          sites + tráfego + automação + IA.
+        </p>
+        <p>
+          <strong>Feito na madrugada:</strong> Análise do site, estratégia completa,
+          5 novas páginas criadas, 2 novos serviços adicionados.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h2>🔴 Urgente</h2>
+          <ul class="checklist">
+            <li>Fazer deploy do site atualizado</li>
+            <li>Metadata e SEO (sitemap, robots)</li>
+            <li>Corrigir links do Nav (Portfolio/Blog)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h2>🟡 Curto Prazo</h2>
+          <ul class="checklist">
+            <li>Landing pages para tráfego pago</li>
+            <li>Setup Google Ads</li>
+            <li>Setup Meta Ads</li>
+            <li>Criar 8 posts de blog SEO</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📊 Mapa de Serviços (Tier)</h2>
+        <table>
+          <tr>
+            <th>Tier</th>
+            <th>Serviços</th>
+            <th>Preço</th>
+          </tr>
+          <tr>
+            <td><span class="tag tag-success">Tier 1</span></td>
+            <td>Sites, Lojas, Landing Pages, Tráfego, SEO</td>
+            <td>Core</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-warning">Tier 2</span></td>
+            <td>Automação WhatsApp, IA E-commerce, Setup Ads</td>
+            <td>R$1.5K-8K</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-info">Tier 3</span></td>
+            <td>Curso, Template, Auditoria (escala)</td>
+            <td>R$147-497</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- CHECKPOINT -->
+    <div id="checkpoint" class="section">
+      <div class="card">
+        <h2>✅ Feito (Madrugada)</h2>
+        <ul class="checklist">
+          <li class="done">Formulário de orçamento conecta ao Supabase</li>
+          <li class="done">Imagem no Hero ajustada (responsiva desktop/mobile)</li>
+          <li class="done">Página /servicos/automacao-whatsapp</li>
+          <li class="done">Página /servicos/ia-ecommerce</li>
+          <li class="done">Landing page /lp/trafego-pago</li>
+          <li class="done">Landing page /lp/automacao-whatsapp</li>
+          <li class="done">Landing page /lp/criacao-site</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🔴 Urgente / SEO</h2>
+        <h3>1. Metadata e SEO</h3>
+        <ul class="checklist">
+          <li>Adicionar metadata com title/description em todas as páginas</li>
+          <li>Gerar Open Graph tags (og:title, og:description, og:image)</li>
+          <li>Criar app/sitemap.ts (sitemap.xml dinâmico)</li>
+          <li>Criar app/robots.ts (robots.txt)</li>
+          <li>Adicionar favicon (atualmente não existe)</li>
+        </ul>
+
+        <h3>2. Blog Dinâmico</h3>
+        <ul class="checklist">
+          <li>Página /blog/[slug] - implementar renderização dos posts</li>
+          <li>Gerar generateStaticParams para blog posts</li>
+          <li>Gerar metadata dinâmica para cada post</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>🟡 Necessário</h2>
+        <ul class="checklist">
+          <li>Nav: "Portfólio" e "Blog" em NAV_ITEMS apontam para # mas deveria apontar para páginas reais</li>
+          <li>Verificar se LPs em /lp/* são necessárias ou duplicam /servicos/*</li>
+          <li>Trocar &lt;img&gt; por &lt;Image /&gt; do Next.js (otimização)</li>
+          <li>Adicionar loading="lazy" onde aplicável</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>📝 Páginas Atuais</h2>
+        <table>
+          <tr><th>Rota</th><th>Status</th><th>Notas</th></tr>
+          <tr><td>/</td><td><span class="tag tag-success">✅ Pronto</span></td><td>Homepage completa</td></tr>
+          <tr><td>/servicos</td><td><span class="tag tag-success">✅ Pronto</span></td><td>Lista de serviços</td></tr>
+          <tr><td>/servicos/[slug]</td><td><span class="tag tag-success">✅ Pronto</span></td><td>Página individual</td></tr>
+          <tr><td>/blog</td><td><span class="tag tag-success">✅ Pronto</span></td><td>Lista de posts</td></tr>
+          <tr><td>/blog/[slug]</td><td><span class="tag tag-warning">⚠️ Parcial</span></td><td>Não renderiza posts</td></tr>
+          <tr><td>/lp/*</td><td><span class="tag tag-success">✅ Pronto</span></td><td>3 LPs criadas</td></tr>
+          <tr><td>/obrigado</td><td><span class="tag tag-success">✅ Pronto</span></td><td></td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>🗑️ Technical Debt</h2>
+        <ul class="checklist">
+          <li>Remover imagens de portfolio não usadas (muitas .webp)</li>
+          <li>Limpar arquivos temporários na raiz (.html, .log)</li>
+          <li>Verificar se .env.local está no .gitignore</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ESTRATÉGIA DIGITAL -->
+    <div id="estrategia" class="section">
+      <div class="card">
+        <h2>📊 Análise do Site Atual</h2>
+        <div class="grid-2">
+          <div>
+            <h3>✅ O que tem</h3>
+            <ul class="checklist">
+              <li class="done">Site institucional responsivo</li>
+              <li class="done">Serviços principais (sites, lojas, landing, tráfego, automação, SEO, apps, identidade, copywriting)</li>
+              <li class="done">Portfolio com carrossel</li>
+              <li class="done">Seção de processo (15 dias)</li>
+              <li class="done">Depoimentos</li>
+              <li class="done">FAQ</li>
+              <li class="done">Blog</li>
+              <li class="done">CTAs para WhatsApp</li>
+            </ul>
+          </div>
+          <div>
+            <h3>❌ O que falta</h3>
+            <ul class="checklist">
+              <li>Páginas específicas para automações</li>
+              <li>Página de IA para e-commerce</li>
+              <li>Landing pages dedicadas por serviço</li>
+              <li>Cases de sucesso detalhados</li>
+              <li>Mais conteúdo no blog</li>
+              <li>Calculadora de ROI</li>
+              <li>Popups/Widgets de conversão</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>🏗️ Mapa de Páginas</h2>
+        <h3>Páginas Principais</h3>
+        <table>
+          <tr><th>Página</th><th>Objetivo</th><th>Tráfego</th></tr>
+          <tr><td>/</td><td>Home - conversão geral</td><td>Orgânico + Direto</td></tr>
+          <tr><td>/servicos</td><td>Lista todos os serviços</td><td>Orgânico</td></tr>
+          <tr><td>/servicos/criacao-sites</td><td>Criação de Sites</td><td>Tráfego pago</td></tr>
+          <tr><td>/servicos/loja-virtual</td><td>E-commerce</td><td>Tráfego pago</td></tr>
+          <tr><td>/servicos/trafego-pago</td><td>Tráfego Pago</td><td>Tráfego pago</td></tr>
+          <tr><td>/servicos/ia-ecommerce</td><td>IA para análise</td><td>Tráfego pago</td></tr>
+          <tr><td>/portfolio</td><td>Portfolio completo</td><td>Orgânico</td></tr>
+          <tr><td>/blog</td><td>Blog (SEO)</td><td>Orgânico</td></tr>
+        </table>
+
+        <h3>Landing Pages para Tráfego Pago</h3>
+        <table>
+          <tr><th>Landing</th><th>Offer</th><th>Fonte</th></tr>
+          <tr><td>/lp/criacao-site-corporativo</td><td>Site corporativo em 15 dias</td><td>Google Ads</td></tr>
+          <tr><td>/lp/loja-virtual-complete</td><td>Montar minha loja virtual</td><td>Meta Ads</td></tr>
+          <tr><td>/lp/automacao-whatsapp</td><td>Automação WhatsApp Business</td><td>Meta/Google</td></tr>
+          <tr><td>/lp/ia-analise-ecommerce</td><td>Análise de IA para meu e-commerce</td><td>Google Ads</td></tr>
+          <tr><td>/lp/trafego-pago-resultados</td><td>Gestão de tráfego pago</td><td>Google Ads</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>📈 Estratégias de Tráfego</h2>
+
+        <h3>1. Google Ads</h3>
+        <table>
+          <tr><th>Campanha</th><th>Tipo</th><th>Palavras-chave</th></tr>
+          <tr><td>Marca</td><td>Search</td><td>pwlabs, pw labs, criar site [cidade]</td></tr>
+          <tr><td>Serviços</td><td>Search</td><td>criar site, loja virtual, tráfego pago, seo</td></tr>
+          <tr><td>Concorrência</td><td>Search</td><td>agency web, desenvolvimento web</td></tr>
+          <tr><td>Remarketing</td><td>Display/PMax</td><td>Visitantes do site</td></tr>
+          <tr><td>Performance Max</td><td>All</td><td>Maximizar conversoes</td></tr>
+        </table>
+
+        <h3>2. Meta Ads (Instagram/Facebook)</h3>
+        <table>
+          <tr><th>Campanha</th><th>Objetivo</th><th>Público</th></tr>
+          <tr><td>Engajamento</td><td>Brand awareness</td><td>Empreendedores</td></tr>
+          <tr><td>Tráfego</td><td>Levar para landing</td><td>Público quente</td></tr>
+          <tr><td>Conversão</td><td>Vendas diretas</td><td>Lookalike, remarketing</td></tr>
+          <tr><td>Catálogo</td><td>Vender serviços</td><td>Catálogo de serviços</td></tr>
+        </table>
+
+        <h3>3. SEO (Orgânico)</h3>
+        <p>Pages SEO a criar:</p>
+        <ul class="checklist">
+          <li>/blog/criar-site-15-dias</li>
+          <li>/blog/como-escolher-agencia</li>
+          <li>/blog/site-loja-virtual</li>
+          <li>/blog/trafego-pago-2024</li>
+          <li>/blog/automacao-whatsapp</li>
+          <li>/blog/ia-ecommerce</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>💰 Metas e KPIs</h2>
+        <table>
+          <tr><th>Métrica</th><th>Mês 1</th><th>Mês 3</th><th>Mês 6</th></tr>
+          <tr><td>Visitas mensais</td><td>2.000</td><td>5.000</td><td>10.000</td></tr>
+          <tr><td>Leads qualificados</td><td>20</td><td>50</td><td>100</td></tr>
+          <tr><td>Conversão</td><td>2%</td><td>3%</td><td>4%</td></tr>
+          <tr><td>Receita novas vendas</td><td>R$15.000</td><td>R$40.000</td><td>R$80.000</td></tr>
+        </table>
+
+        <h3 style="margin-top: 20px;">Tráfego Metas</h3>
+        <table>
+          <tr><th>Canal</th><th>Investimento</th><th>Meta Leads</th></tr>
+          <tr><td>Google Ads</td><td>R$ 2.000/mês</td><td>15-20</td></tr>
+          <tr><td>Meta Ads</td><td>R$ 1.500/mês</td><td>10-15</td></tr>
+          <tr><td>Orgânico (SEO)</td><td>R$ 0</td><td>10-15</td></tr>
+          <tr><td>Instagram</td><td>R$ 300/mês</td><td>5-10</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div id="instagram" class="section">
+      <div class="card">
+        <h2>📸 Pilares de Conteúdo</h2>
+        <div class="content-pillars">
+          <div class="pillar pillar-edu">
+            <div class="percent">40%</div>
+            <div class="name">🎓 Educa</div>
+          </div>
+          <div class="pillar pillar-proof">
+            <div class="percent">30%</div>
+            <div class="name">🏆 Prova</div>
+          </div>
+          <div class="pillar pillar-bts">
+            <div class="percent">20%</div>
+            <div class="name">🎬 Bastidores</div>
+          </div>
+          <div class="pillar pillar-sales">
+            <div class="percent">10%</div>
+            <div class="name">💰 Vendas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📅 Calendário Semanal</h2>
+        <table class="schedule-table">
+          <tr><th>Dia</th><th>Tipo</th><th>Formato</th><th>Tema</th></tr>
+          <tr><td class="day">Segunda</td><td>Educa</td><td>Carrossel</td><td>Dica de marketing</td></tr>
+          <tr><td class="day">Terça</td><td>Prova</td><td>Reels</td><td>Case de sucesso</td></tr>
+          <tr><td class="day">Quarta</td><td>Vendas</td><td>Post</td><td>Serviço do mês</td></tr>
+          <tr><td class="day">Quinta</td><td>Bastidores</td><td>Stories</td><td>Bastidores projetos</td></tr>
+          <tr><td class="day">Sexta</td><td>Educa</td><td>Reels</td><td>Mito vs Realidade</td></tr>
+          <tr><td class="day">Sábado</td><td>Engajamento</td><td>Stories</td><td>Pergunta</td></tr>
+          <tr><td class="day">Domingo</td><td>Motivação</td><td>Reels</td><td>Frase</td></tr>
+        </table>
+      </div>
+
+      <div class="card">
+        <h2>💡 Ideias por Categoria</h2>
+
+        <h3>🎓 Educa (40%)</h3>
+        <p><strong>Carrosséis:</strong></p>
+        <ul class="checklist">
+          <li>5 erros que fazem seu site não vender</li>
+          <li>O que colocar na home do seu site</li>
+          <li>Quanto custa criar um site em 2024</li>
+          <li>Diferença entre site e loja virtual</li>
+        </ul>
+
+        <p><strong>Reels:</strong></p>
+        <ul class="checklist">
+          <li>1 ferramenta que todo negócio precisa</li>
+          <li>Como saber se precisa de tráfego pago</li>
+          <li>SEO em 60 segundos</li>
+        </ul>
+
+        <h3>🏆 Prova (30%)</h3>
+        <ul class="checklist">
+          <li>Case: +200% em vendas após novo site</li>
+          <li>Como entregamos em 15 dias</li>
+          <li>Transformação: antes e depois</li>
+          <li>Depoimentos em vídeo</li>
+        </ul>
+
+        <h3>🎬 Bastidores (20%)</h3>
+        <ul class="checklist">
+          <li>Um dia na PW Labs</li>
+          <li>Como fazemos nosso processo</li>
+          <li>Ferramentas que usamos</li>
+          <li>Time executando projetos</li>
+        </ul>
+
+        <h3>💰 Vendas (10%)</h3>
+        <ul class="checklist">
+          <li>Novo serviço: Automação WhatsApp</li>
+          <li>Promotion: Primeiro mês GRÁTIS</li>
+          <li>Agende sua consultoria</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>#️⃣ Hashtags por Serviço</h2>
+
+        <div class="hashtag-group">
+          <strong>📌 Para Sites</strong><br>
+          #criarsite #sitedeempresa #webdesign #desenvowebsite #sitebarato #criarsitebrasil #website #sitemarketing
+        </div>
+
+        <div class="hashtag-group">
+          <strong>🛒 Para E-commerce</strong><br>
+          #lojavirtual #ecommercem #venderonline #montarloja #shopify #woocommerce #vendasonline
+        </div>
+
+        <div class="hashtag-group">
+          <strong>📊 Para Tráfego</strong><br>
+          #trafegopago #googleads #metaads #anuncios #marketingdigital #ads #roi #resultados
+        </div>
+
+        <div class="hashtag-group">
+          <strong>🤖 Para Automação</strong><br>
+          #automacao #whatsappbusiness #chatbot #nutricao #zapautomacao #atendimento
+        </div>
+
+        <div class="hashtag-group">
+          <strong>🤖 Para IA</strong><br>
+          #ia #inteligenciaartificial #ecommerce #analisededados #ai #machinelearning #otimizacao
+        </div>
+
+        <div class="hashtag-group">
+          <strong>🌐 Geral (todos)</strong><br>
+          #pwlab #agenciadigital #marketingdigitalbrasil #empreendedorpor #brasil #negociosdigitais
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📱 Calls-to-Action</h2>
+        <h3>Stories</h3>
+        <ul class="checklist">
+          <li>"Quer saber mais?link na bio"</li>
+          <li>"Comenta aqui"</li>
+          <li>"Marca quem precisa ver isso"</li>
+          <li>"DM para orçamento"</li>
+        </ul>
+
+        <h3>Posts</h3>
+        <ul class="checklist">
+          <li>"Link na bio para saber mais"</li>
+          <li>"Quer um orçamento? Chama no WhatsApp"</li>
+          <li>"Leia o post completo no blog"</li>
+        </ul>
+
+        <h3>Reels</h3>
+        <ul class="checklist">
+          <li>"Salva pra não esquecer"</li>
+          <li>"Compartilha com quem precisa"</li>
+          <li>"Segue pra mais dicas"</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>⏰ Dicas de Postagem</h2>
+        <table>
+          <tr><th>Horário</th><td>08:00-09:00 • 12:00-13:00 • 18:00-20:00</td></tr>
+          <tr><th>Carrossel</th><td>5-10 slides</td></tr>
+          <tr><th>Reels</th><td>15-30 segundos</td></tr>
+          <tr><th>Legenda</th><td>100-200 palavras</td></tr>
+          <tr><th>Frequência Posts</th><td>3x semana</td></tr>
+          <tr><th>Frequência Stories</th><td>5x dia</td></tr>
+          <tr><th>Frequência Reels</th><td>2-3x semana</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <footer>
+      <p>📁 Arquivos: C:\Users\lguar\projetos\pwlabs-website\</p>
+      <p>🌐 Site: https://pwlabs.vercel.app</p>
+    </footer>
+  </div>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+
+      document.getElementById(id).classList.add('active');
+
+      document.querySelectorAll('.nav-tab').forEach(t => {
+        if (t.getAttribute('onclick').includes(id)) {
+          t.classList.add('active');
+        }
+      });
+
+      event.preventDefault();
+    }
+
+    // Show hash on load
+    if (window.location.hash) {
+      const section = window.location.hash.substring(1);
+      showSection(section);
+    }
+  </script>
+</body>
+</html>

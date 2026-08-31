@@ -1,10 +1,19 @@
 import { GeistSans } from 'geist/font/sans';
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
+import localFont from 'next/font/local';
 import "./globals.css";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { BudgetProvider } from "@/components/BudgetProvider";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
+
+const klarheitPlakat = localFont({
+  src: '../public/fonts/ESKlarheitPlakatFP-Extrabold.woff2',
+  variable: '--font-klarheit',
+  weight: '800',
+  display: 'swap',
+});
+
 
 export const viewport: Viewport = {
   themeColor: '#FF007F',
@@ -13,7 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pwlabs.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://pwlabs.vercel.app'),
   title: {
     default: "PWlabs — Páginas que vendem, marcas que ficam",
     template: "%s | PWlabs"
@@ -25,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PWlabs — Páginas que vendem, marcas que ficam",
     description: "Landing pages, sites institucionais, e-commerce, tráfego pago e SEO. Páginas de alta conversão.",
-    url: "https://pwlabs.vercel.app",
+    url: process.env.NEXT_PUBLIC_BASE_URL || "https://pwlabs.vercel.app",
     siteName: "PWlabs",
     locale: "pt_BR",
     type: "website",
@@ -60,7 +69,7 @@ export default function RootLayout({
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
   return (
-    <html lang="pt-BR" className={GeistSans.variable}>
+    <html lang="pt-BR" className={`${GeistSans.variable} ${klarheitPlakat.variable}`}>
       <body className={`${GeistSans.className} antialiased`}>
         {/* NoScript fallback para usuários sem JS habilitado */}
         {gtmId && (

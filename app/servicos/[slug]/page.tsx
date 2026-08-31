@@ -39,7 +39,6 @@ export default async function ServicoPage({ params }: { params: Promise<{ slug: 
 
               <h2
                 style={{
-                  fontFamily: "var(--font-cormorant), serif",
                   fontSize: 24,
                   fontWeight: 500,
                   color: "var(--cream)",

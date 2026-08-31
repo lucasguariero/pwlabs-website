@@ -7,3 +7,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# Diretrizes PWLabs
+
+Para entender o ecossistema da PWLabs, regras de design (Stitch), organização de notas (Obsidian) e fluxo oficial de trabalho, leia as especificações em [CLAUDE.md](file:///c:/Users/lguar/projetos/pwlabs-website/CLAUDE.md).

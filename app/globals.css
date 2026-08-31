@@ -1329,4 +1329,8 @@
 *, body, html {
   font-family: var(--font-geist-sans), "Geist Sans", "Geist", system-ui, -apple-system, sans-serif !important;
 }
+
+h1, h2, h3, h4, h5, h6, .font-display, .font-serif {
+  font-family: var(--font-klarheit), sans-serif !important;
+}
 }

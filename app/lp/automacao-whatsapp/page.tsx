@@ -28,14 +28,6 @@ export default function LPAutomacaoWhatsApp() {
                   href={WHATSAPP_URL}
                   className="btn"
                   style={{ background: 'white', color: '#065f46', padding: '16px 32px', fontWeight: '600' }}
-                  onClick={() => {
-                    if (typeof window !== "undefined" && (window as any).gtag) {
-                      (window as any).gtag("event", "click_whatsapp", {
-                        event_category: "whatsapp",
-                        event_label: "lp_automacao_whatsapp",
-                      });
-                    }
-                  }}
                 >
                   Quero automatizar agora
                 </a>
@@ -128,14 +120,6 @@ export default function LPAutomacaoWhatsApp() {
               href={WHATSAPP_URL}
               className="btn"
               style={{ background: '#6ee7b7', color: '#065f46', padding: '18px 40px', fontSize: '1.125rem', fontWeight: '600' }}
-              onClick={() => {
-                if (typeof window !== "undefined" && (window as any).gtag) {
-                  (window as any).gtag("event", "click_whatsapp", {
-                    event_category: "whatsapp",
-                    event_label: "lp_automacao_whatsapp",
-                  });
-                }
-              }}
             >
               Falar com especialista
             </a>

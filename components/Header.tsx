@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { NAV_ITEMS, WHATSAPP_URL } from "@/lib/data";
 
 export function Header() {
@@ -20,35 +22,40 @@ export function Header() {
   return (
     <header className="site-header">
       <div className="container-page site-header-inner">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <a href="/" className="site-logo" onClick={() => setOpen(false)}>
-          <img src="/assets/logo-pwlabs.svg" alt="PWlabs" />
-        </a>
+        <Link href="/" className="site-logo" onClick={() => setOpen(false)}>
+          <Image
+            src="/assets/logo-pwlabs.svg"
+            alt="PWlabs"
+            width={120}
+            height={32}
+            priority
+          />
+        </Link>
 
         <nav className="site-nav" aria-label="Navegação principal">
           {NAV_ITEMS.map((item) => (
             <div key={item.label} className="site-nav-item">
-              <a href={item.href} className="site-nav-link">
+              <Link href={item.href} className="site-nav-link">
                 {item.label}
-              </a>
+              </Link>
               {item.children && (
                 <div className="site-nav-dropdown">
                   <div className="site-nav-dropdown-inner">
                     {item.children.map((child) => (
-                      <a
+                      <Link
                         key={child.label}
                         href={child.href}
                         className="site-nav-dropdown-link"
                       >
                         {child.label}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
               )}
             </div>
           ))}
-          <a href="/servicos" className="site-nav-link">Serviços</a>
+          <Link href="/servicos" className="site-nav-link">Serviços</Link>
         </nav>
 
         <a
@@ -96,36 +103,36 @@ export function Header() {
         <nav className="site-mobile-nav" aria-label="Menu mobile">
           {NAV_ITEMS.map((item) => (
             <div key={item.label} className="site-mobile-group">
-              <a
+              <Link
                 href={item.href}
                 className="site-mobile-link"
                 onClick={() => setOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
               {item.children && (
                 <div className="site-mobile-children">
                   {item.children.map((child) => (
-                    <a
+                    <Link
                       key={child.label}
                       href={child.href}
                       className="site-mobile-sublink"
                       onClick={() => setOpen(false)}
                     >
                       {child.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}
             </div>
           ))}
-          <a
+          <Link
             href="/servicos"
             className="site-mobile-link"
             onClick={() => setOpen(false)}
           >
             Serviços
-          </a>
+          </Link>
           <a
             href={WHATSAPP_URL}
             className="site-mobile-cta"

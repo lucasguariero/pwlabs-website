@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O Manifesto — Slide 1</title>
+    <script src="./support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet data-dc-atomics>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+          :root {
+            --bg-dark: #0C0C0F;
+            --text-cream: #F4EFE6;
+            --text-muted: #9A958C;
+            --accent-magenta: #FF0570;
+          }
+
+          .slide-container {
+            min-height: 100vh;
+            background: var(--bg-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 48px;
+            font-family: 'Space Grotesk', sans-serif;
+          }
+
+          .accent-bar {
+            width: 80px;
+            height: 4px;
+            background: var(--accent-magenta);
+            margin-bottom: 48px;
+          }
+
+          .headline {
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--text-cream);
+            text-align: center;
+            max-width: 800px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+          }
+
+          .headline .highlight {
+            color: var(--accent-magenta);
+          }
+
+          .subtext {
+            margin-top: 32px;
+            font-size: 18px;
+            color: var(--text-muted);
+            text-align: center;
+            max-width: 500px;
+          }
+
+          .slide-number {
+            position: absolute;
+            bottom: 32px;
+            right: 48px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+          }
+
+          .brand {
+            position: absolute;
+            bottom: 32px;
+            left: 48px;
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 600;
+            letter-spacing: 2px;
+          }
+        </style>
+      </helmet>
+
+      <div class="slide-container" data-screen-label="Slide 1 - Gancho">
+        <div class="accent-bar"></div>
+        <h1 class="headline">
+          O erro que faz seu produto<span class="highlight"> parecer amador</span> é...
+        </h1>
+        <p class="subtext">
+          ...você desenhar o que<u> acha</u> que o usuário quer. <br/>Não o que ele <u>realmente</u> precisa.
+        </p>
+        <span class="slide-number">1 / 6</span>
+        <span class="brand">PWLABS</span>
+      </div>
+    </x-dc>
+
+    <script
+      type="text/x-dc"
+      data-dc-script
+      data-props='{
+  "$preview": { "width": 1080, "width": 1350 }
+}'
+    >
+      class Component extends DCLogic {
+        renderVals() { return {}; }
+      }
+    </script>
+  </body>
+</html>
