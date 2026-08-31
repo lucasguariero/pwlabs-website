@@ -99,31 +99,83 @@
     <section class="relative w-full aspect-[4/5] bg-pwInk border border-pwBorder rounded-[28px] overflow-hidden shadow-2xl noise">
 
       <!-- Ambient glow -->
-      <div class="absolute -bottom-20 -right-20 w-72 h-72 bg-pwMagenta/20 rounded-full blur-[100px] glow-bg"></div>
+      <div class="absolute -bottom-24 -right-16 w-80 h-80 bg-pwMagenta/15 rounded-full blur-[120px] glow-bg"></div>
 
       <div class="relative z-10 h-full flex flex-col justify-between p-7">
         <!-- Top bar -->
         <div class="flex justify-between items-center">
-          <svg width="20" height="20" viewBox="0 0 161 360" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.614 359.999 38.767 359.83 37.977 359.501C37.187 359.173 36.47 358.692 35.867 358.086C35.261 357.486 34.781 356.771 34.455 355.983C34.128 355.195 33.962 354.351 33.965 353.498C33.965 353.232 33.965 352.953 33.965 352.699L34.434 350.95L54.06 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272L161.65 170.183Z" fill="#F4EFE6"/>
-            <path d="M127.203 6.489C127.203 7.111 127.118 7.729 126.949 8.327V8.454L107.184 81.752H73.205C71.821 81.754 70.473 82.196 69.357 83.014C68.24 83.832 67.412 84.983 66.993 86.302L66.828 86.949L46.188 163.656L41.788 179.994L37.313 196.331H6.517C4.79 196.325 3.137 195.636 1.916 194.416C0.695 193.196 0.007 191.542 0 189.817C0.003 189.39 0.05 188.966 0.139 188.549L0.304 187.915L2.422 180.057L6.884 163.656L28.97 81.815L49.738 4.652V4.512C50.163 3.202 50.992 2.061 52.105 1.25C53.219 0.44 54.56 0.002 55.937 0H120.598C121.453 0.001 122.3 0.17 123.089 0.499C123.879 0.827 124.596 1.308 125.2 1.914C125.822 2.504 126.32 3.213 126.664 3.999C127.008 4.785 127.192 5.632 127.203 6.489Z" fill="#0C0C0F"/>
-            <path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/>
-            <path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/>
-          </svg>
+          <div class="flex items-center gap-1.5">
+            <svg width="16" height="16" viewBox="0 0 161 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.614 359.999 38.767 359.83 37.977 359.501C37.187 359.173 36.47 358.692 35.867 358.086C35.261 357.486 34.781 356.771 34.455 355.983C34.128 355.195 33.962 354.351 33.965 353.498C33.965 353.232 33.965 352.953 33.965 352.699L34.434 350.95L54.06 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272L161.65 170.183Z" fill="#F4EFE6"/>
+              <path d="M127.203 6.489C127.203 7.111 127.118 7.729 126.949 8.327V8.454L107.184 81.752H73.205C71.821 81.754 70.473 82.196 69.357 83.014C68.24 83.832 67.412 84.983 66.993 86.302L66.828 86.949L46.188 163.656L41.788 179.994L37.313 196.331H6.517C4.79 196.325 3.137 195.636 1.916 194.416C0.695 193.196 0.007 191.542 0 189.817C0.003 189.39 0.05 188.966 0.139 188.549L0.304 187.915L2.422 180.057L6.884 163.656L28.97 81.815L49.738 4.652V4.512C50.163 3.202 50.992 2.061 52.105 1.25C53.219 0.44 54.56 0.002 55.937 0H120.598C121.453 0.001 122.3 0.17 123.089 0.499C123.879 0.827 124.596 1.308 125.2 1.914C125.822 2.504 126.32 3.213 126.664 3.999C127.008 4.785 127.192 5.632 127.203 6.489Z" fill="#0C0C0F"/>
+              <path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/>
+              <path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/>
+            </svg>
+            <span class="text-[8px] font-bold tracking-[0.15em] uppercase text-pwCream font-sans">PWLabs</span>
+          </div>
           <span class="text-[8px] tracking-[0.25em] text-pwMuted font-mono font-bold">01 / 04</span>
         </div>
 
-        <!-- Main content -->
-        <div class="space-y-5 my-auto">
-          <h2 class="text-[28px] font-extrabold tracking-[-0.04em] leading-[0.92] uppercase font-display">
+        <!-- Title -->
+        <div class="my-auto space-y-4">
+          <h2 class="text-[26px] font-extrabold tracking-[-0.04em] leading-[0.92] uppercase font-display">
             Sites <span class="text-pwMagenta">bonitos</span><br>
             não pagam<br>
             as contas da<br>
             sua empresa.
           </h2>
-          <!-- 3D Hero Asset -->
-          <div class="w-full aspect-[16/10] rounded-2xl overflow-hidden border border-white/[0.08] shadow-lg">
-            <img src="/assets/slide1-asset.jpg" alt="" class="w-full h-full object-cover" loading="eager">
+
+          <!-- CSS Browser Mockup (estilo @insany.co — interface real) -->
+          <div class="w-full rounded-xl border border-white/[0.08] bg-[#0a0a0e] overflow-hidden shadow-xl">
+            <!-- Browser Chrome Bar -->
+            <div class="flex items-center gap-1.5 px-3 py-2 bg-[#161619] border-b border-white/[0.06]">
+              <span class="w-[6px] h-[6px] rounded-full bg-[#ff5f57]"></span>
+              <span class="w-[6px] h-[6px] rounded-full bg-[#febc2e]"></span>
+              <span class="w-[6px] h-[6px] rounded-full bg-[#28c840]"></span>
+              <div class="ml-2 flex-1 bg-[#0c0c0f] rounded-md px-2 py-0.5 flex items-center gap-1">
+                <svg class="w-2 h-2 text-pwMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm0 0c0 1.657 1.343 3 3 3M15 14c1.657 0 3-1.343 3-3s-1.343-3-3-3"/></svg>
+                <span class="text-[7px] text-pwMuted font-mono">pwlabs.co</span>
+              </div>
+            </div>
+            <!-- Simulated Site Content -->
+            <div class="p-3 space-y-2">
+              <!-- Nav -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1">
+                  <svg width="10" height="10" viewBox="0 0 161 360" fill="none"><path d="M161.65 170.183C161.651 170.644 161.6 171.103 161.498 171.552L161.345 172.123L159.228 179.994L154.816 196.331L132.743 278.159L112.115 354.803L111.937 355.462C111.518 356.778 110.692 357.926 109.578 358.742C108.463 359.557 107.119 359.998 105.738 360H40.469C39.614 359.999 38.767 359.83 37.977 359.501C37.187 359.173 36.47 358.692 35.867 358.086C35.261 357.486 34.781 356.771 34.455 355.983C34.128 355.195 33.962 354.351 33.965 353.498C33.965 353.232 33.965 352.953 33.965 352.699L34.434 350.95L54.06 278.261L124.248 163.77H155.07C156.796 163.77 158.451 164.455 159.673 165.674C160.895 166.893 161.583 168.547 161.586 170.272Z" fill="#F4EFE6"/><path d="M144.421 88.317C144.417 88.743 144.371 89.168 144.282 89.585L144.117 90.219L124.338 163.58H85.035L107.121 81.739H137.904C138.761 81.731 139.611 81.896 140.402 82.225C141.193 82.554 141.909 83.04 142.507 83.653C143.123 84.262 143.61 84.989 143.938 85.79C144.267 86.592 144.432 87.451 144.421 88.317Z" fill="#FF99C3"/><path d="M76.211 196.331L54.125 278.159H23.697C22.842 278.162 21.995 277.996 21.206 277.671C20.416 277.345 19.698 276.866 19.095 276.261C18.491 275.657 18.013 274.938 17.689 274.148C17.365 273.358 17.2 272.511 17.205 271.657C17.205 271.231 17.247 270.807 17.332 270.389L17.51 269.68L37.313 196.331H76.211Z" fill="#FF99C3"/></svg>
+                  <span class="text-[6px] text-pwCream font-bold">PWLabs</span>
+                </div>
+                <div class="flex gap-2">
+                  <span class="text-[5px] text-pwMuted">Serviços</span>
+                  <span class="text-[5px] text-pwMuted">Blog</span>
+                  <span class="bg-pwMagenta/80 text-white text-[5px] px-1.5 py-0.5 rounded-sm font-bold">Orçamento</span>
+                </div>
+              </div>
+              <!-- Hero simulation -->
+              <div class="mt-1 space-y-1">
+                <p class="text-[7px] text-pwCream font-extrabold leading-tight">Transformamos cliques<br>em faturamento real.</p>
+                <p class="text-[5px] text-pwMuted leading-relaxed">Sites rápidos, landing pages e automação.</p>
+                <div class="flex gap-1 mt-1">
+                  <span class="bg-pwCream text-pwInk text-[4px] px-1.5 py-0.5 rounded-sm font-bold">Orçar agora</span>
+                  <span class="border border-white/10 text-pwMuted text-[4px] px-1.5 py-0.5 rounded-sm">Ver serviços</span>
+                </div>
+              </div>
+              <!-- Bento grid cards -->
+              <div class="grid grid-cols-3 gap-1 mt-2">
+                <div class="bg-[#161619] border border-white/[0.04] rounded-md p-1.5">
+                  <p class="text-[4px] text-pwMuted uppercase tracking-wider">Performance</p>
+                  <p class="text-[10px] text-emerald-400 font-extrabold font-mono">98</p>
+                </div>
+                <div class="bg-[#161619] border border-white/[0.04] rounded-md p-1.5">
+                  <p class="text-[4px] text-pwMuted uppercase tracking-wider">Entrega</p>
+                  <p class="text-[10px] text-pwCream font-extrabold font-mono">15d</p>
+                </div>
+                <div class="bg-[#161619] border border-white/[0.04] rounded-md p-1.5">
+                  <p class="text-[4px] text-pwMuted uppercase tracking-wider">Stack</p>
+                  <p class="text-[7px] text-pwCream font-extrabold">Next.js</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -131,7 +183,6 @@
         <div class="flex justify-between items-end">
           <span class="text-[7px] text-pwMuted uppercase tracking-[0.25em] font-bold leading-tight">Foque em<br>faturamento.</span>
           <div class="flex items-center gap-1.5">
-            <!-- Carousel dots -->
             <span class="w-1.5 h-1.5 rounded-full dot-active"></span>
             <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
             <span class="w-1.5 h-1.5 rounded-full dot-inactive"></span>
