@@ -37,6 +37,39 @@
       font-family: 'Geist', system-ui, -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
+    
+    /* Animações CSS para dar dinamismo */
+    @keyframes slow-rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes progress-crawl {
+      0% { width: 0%; }
+      50% { width: 40%; }
+      100% { width: 45%; }
+    }
+    @keyframes progress-snap {
+      0% { width: 0%; }
+      20% { width: 100%; }
+      100% { width: 100%; }
+    }
+    
+    .rotate-slow {
+      animation: slow-rotate 25s linear infinite;
+    }
+    .pulse-glow {
+      animation: pulse-soft 4s ease-in-out infinite;
+    }
+    .crawl-bar {
+      animation: progress-crawl 5s infinite linear;
+    }
+    .snap-bar {
+      animation: progress-snap 2s infinite ease-out;
+    }
   </style>
 </head>
 <body class="min-h-screen text-pwCream flex flex-col items-center py-12 px-4 select-none">
@@ -44,23 +77,31 @@
   <!-- Header -->
   <header class="text-center mb-10">
     <h1 class="text-xl font-extrabold tracking-[0.15em] uppercase font-display text-pwCream">PWLABS</h1>
-    <p class="text-[10px] text-pwMuted uppercase tracking-widest mt-1">Carrossel Manifesto — Versão Refinada</p>
+    <p class="text-[10px] text-pwMuted uppercase tracking-widest mt-1">Carrossel Manifesto — Versão Dinâmica</p>
   </header>
 
   <!-- Container do Carrossel (Visualização Empilhada e Responsiva) -->
   <main class="w-full max-w-[380px] flex flex-col gap-12">
     
     <!-- SLIDE 1 (Capa) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+      
+      <!-- Fundo Dinâmico (Luz Gradiente Suave) -->
+      <div class="absolute -right-24 -bottom-24 w-80 h-80 bg-pwMagenta/[0.04] rounded-full filter blur-3xl pulse-glow pointer-events-none"></div>
+      <!-- Elemento Gráfico: Grid de Linhas Finas -->
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+      
       <!-- Número gigante de fundo sutil -->
       <div class="absolute right-8 bottom-2 text-[11rem] font-extrabold text-white/[0.012] select-none leading-none font-display">01</div>
       
       <div class="flex justify-between items-center w-full z-10">
-        <span class="text-[9px] tracking-[0.25em] text-pwMuted font-bold font-mono">PWLABS / INSIGHT</span>
+        <span class="text-[9px] tracking-[0.25em] text-pwMuted font-bold font-mono">PWLABS / INTERATIVO</span>
         <span class="text-[9px] tracking-widest text-pwMuted font-mono">01.04</span>
       </div>
       
-      <div class="my-auto z-10">
+      <div class="my-auto z-10 relative">
+        <!-- Detalhe de design: Linha decorativa vertical magenta -->
+        <div class="absolute -left-4 top-1.5 bottom-1.5 w-[2px] bg-pwMagenta rounded-full"></div>
         <h2 class="text-[2.6rem] font-extrabold tracking-[-0.05em] leading-[0.88] uppercase font-display text-pwCream">
           Sites<br>
           <span class="text-pwMagenta">bonitos</span><br>
@@ -74,8 +115,8 @@
       <div class="flex justify-between items-center w-full z-10">
         <span class="text-[8px] text-pwMuted uppercase tracking-[0.2em] font-bold">Foque em faturamento</span>
         <div class="flex items-center gap-1">
-          <span class="text-[8px] text-pwMuted uppercase tracking-wider font-bold">Próximo</span>
-          <svg class="w-3 h-3 text-pwMuted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <span class="text-[8px] text-pwMuted uppercase tracking-wider font-bold">Arraste</span>
+          <svg class="w-3 h-3 text-pwMuted group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
           </svg>
         </div>
@@ -83,7 +124,8 @@
     </section>
 
     <!-- SLIDE 2 (O Problema) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
       <div class="absolute right-8 bottom-2 text-[11rem] font-extrabold text-white/[0.012] select-none leading-none font-display">02</div>
       
       <div class="flex justify-between items-center w-full z-10">
@@ -91,22 +133,39 @@
         <span class="text-[9px] tracking-widest text-pwMuted font-mono">02.04</span>
       </div>
       
-      <div class="my-auto z-10 space-y-5">
+      <div class="my-auto z-10 space-y-4">
         <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream">
           A maioria das agências foca em estética. Nós focamos em faturamento.
         </h3>
         
-        <!-- Lista minimalista de comparação - sem cara de IA -->
-        <div class="border-l-2 border-pwMagenta/30 pl-4 py-1 space-y-3 font-sans text-xs">
-          <div>
-            <p class="font-bold text-pwCream">O erro comum:</p>
-            <p class="text-pwMuted mt-0.5 leading-relaxed">Criar páginas pesadas, lentas (5.8s+) e com textos confusos que não direcionam o lead para a ação.</p>
+        <!-- Elemento Visual: Mockup de Navegador com Barra de Carregamento Lenta -->
+        <div class="bg-black/40 border border-white/10 rounded-2xl p-4 font-sans text-xs space-y-3">
+          <div class="flex justify-between items-center border-b border-white/5 pb-2">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
+            </div>
+            <span class="text-[8px] text-red-400 font-bold uppercase tracking-wider font-mono">site-lento.com</span>
+          </div>
+          
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-[9px] text-pwMuted">
+              <span>Status: Carregando elementos visuais...</span>
+              <span class="text-red-400 font-mono font-bold">5.8s</span>
+            </div>
+            <!-- Barra de progresso lenta animada -->
+            <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full bg-red-500 crawl-bar rounded-full"></div>
+            </div>
+          </div>
+          
+          <!-- Mini Gráfico de Perda de Tráfego -->
+          <div class="pt-1 flex items-center justify-between">
+            <span class="text-[8px] text-pwMuted uppercase font-bold">Tráfego que abandona:</span>
+            <span class="text-[10px] text-red-400 font-bold font-mono">-53%</span>
           </div>
         </div>
-        
-        <p class="text-pwMuted text-[11px] leading-relaxed font-sans">
-          Design sem engenharia de conversão é apenas desperdício de tráfego pago.
-        </p>
       </div>
       
       <div class="flex justify-between items-center w-full z-10">
@@ -116,7 +175,8 @@
     </section>
 
     <!-- SLIDE 3 (O Manifesto/Solução) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808005_1px,transparent_1px),linear-gradient(to_bottom,#80808005_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
       <div class="absolute right-8 bottom-2 text-[11rem] font-extrabold text-white/[0.012] select-none leading-none font-display">03</div>
       
       <div class="flex justify-between items-center w-full z-10">
@@ -124,20 +184,43 @@
         <span class="text-[9px] tracking-widest text-pwMuted font-mono">03.04</span>
       </div>
       
-      <div class="my-auto z-10 space-y-6">
+      <div class="my-auto z-10 space-y-4">
         <h3 class="text-2xl font-extrabold tracking-tight leading-tight font-display text-pwCream">
           Nós construímos para o seu resultado.
         </h3>
         
-        <!-- Lista técnica minimalista baseada em números -->
-        <div class="space-y-4 font-sans text-xs">
-          <div class="border-t border-white/10 pt-3">
-            <p class="font-extrabold text-pwCream uppercase tracking-wider text-[10px] text-pwMagenta">01 / Desempenho Extremo</p>
-            <p class="text-pwMuted mt-0.5 leading-relaxed text-[11px]">Código limpo em Next.js com carregamento sub-segundo. O lead não desiste antes da página abrir.</p>
+        <!-- Elemento Visual: Mockup de Navegador Carregando Sub-segundo -->
+        <div class="bg-black/40 border border-white/10 rounded-2xl p-4 font-sans text-xs space-y-3">
+          <div class="flex justify-between items-center border-b border-white/5 pb-2">
+            <div class="flex gap-1.5">
+              <span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-white/10"></span>
+            </div>
+            <span class="text-[8px] text-emerald-400 font-bold uppercase tracking-wider font-mono">pwlabs.co</span>
           </div>
-          <div class="border-t border-white/10 pt-3">
-            <p class="font-extrabold text-pwCream uppercase tracking-wider text-[10px] text-pwMagenta">02 / Copywriting Persuasivo</p>
-            <p class="text-pwMuted mt-0.5 leading-relaxed text-[11px]">Estruturação de textos focada em quebrar objeções e acelerar a conversão de leads.</p>
+          
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-[9px] text-pwMuted">
+              <span>Status: Carregado e Interativo</span>
+              <span class="text-emerald-400 font-mono font-bold">0.4s</span>
+            </div>
+            <!-- Barra de progresso rápida animada -->
+            <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full bg-emerald-500 snap-bar rounded-full"></div>
+            </div>
+          </div>
+          
+          <!-- Lista técnica minimalista -->
+          <div class="grid grid-cols-2 gap-2 pt-1 border-t border-white/5 mt-2">
+            <div>
+              <p class="text-[7px] text-pwMuted font-bold uppercase">NEXT.JS</p>
+              <p class="text-[10px] font-bold text-pwCream">Performance 98+</p>
+            </div>
+            <div>
+              <p class="text-[7px] text-pwMuted font-bold uppercase">COPYWRITING</p>
+              <p class="text-[10px] font-bold text-pwCream">Foco em Conversão</p>
+            </div>
           </div>
         </div>
       </div>
@@ -149,7 +232,8 @@
     </section>
 
     <!-- SLIDE 4 (CTA) -->
-    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+    <section class="w-full aspect-[4/5] bg-pwInk border border-white/[0.06] rounded-3xl p-9 flex flex-col justify-between shadow-2xl relative overflow-hidden group hover:border-white/10 transition-all duration-500">
+      <div class="absolute -right-24 -top-24 w-80 h-80 bg-pwMagenta/[0.03] rounded-full filter blur-3xl pointer-events-none"></div>
       <div class="absolute right-8 bottom-2 text-[11rem] font-extrabold text-white/[0.012] select-none leading-none font-display">04</div>
       
       <div class="flex justify-between items-center w-full z-10">
@@ -169,11 +253,31 @@
           </p>
         </div>
 
+        <!-- Elemento Visual: Seletor Interativo de Agenda -->
+        <div class="bg-black/35 border border-white/5 rounded-2xl p-4 font-sans space-y-3">
+          <div class="flex justify-between items-center border-b border-white/5 pb-2 text-[9px]">
+            <span class="text-pwMuted uppercase font-bold">Escolha seu horário</span>
+            <span class="bg-pwMagenta/15 text-pwMagenta text-[7px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider">Disponível</span>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-2">
+            <button onclick="selectTime(this)" class="time-slot border border-white/10 hover:border-pwMagenta rounded-xl py-1.5 text-center text-[10px] font-bold text-pwCream hover:bg-pwMagenta/10 transition-all">
+              10:00h
+            </button>
+            <button onclick="selectTime(this)" class="time-slot border border-white/10 hover:border-pwMagenta rounded-xl py-1.5 text-center text-[10px] font-bold text-pwCream hover:bg-pwMagenta/10 transition-all">
+              14:30h
+            </button>
+            <button onclick="selectTime(this)" class="time-slot border border-white/10 hover:border-pwMagenta rounded-xl py-1.5 text-center text-[10px] font-bold text-pwCream hover:bg-pwMagenta/10 transition-all">
+              16:00h
+            </button>
+          </div>
+        </div>
+
         <div class="space-y-2">
           <a href="https://wa.me/5567999999999" class="w-full block py-4 bg-pwCream hover:bg-[#E2DDD3] active:scale-[0.98] transition-all text-pwInk text-center font-extrabold text-[10px] tracking-widest uppercase rounded-xl font-sans shadow-md">
             Reservar Diagnóstico Gratuito
           </a>
-          <p class="text-center text-[9px] text-pwMuted italic tracking-wider">Apenas 3 vagas disponíveis para esta semana.</p>
+          <p class="text-center text-[8px] text-pwMuted italic tracking-wider">Apenas 3 vagas disponíveis esta semana.</p>
         </div>
       </div>
       
@@ -184,9 +288,21 @@
 
   </main>
 
+  <!-- Script simples para simular seleção na agenda -->
+  <script>
+    function selectTime(btn) {
+      document.querySelectorAll('.time-slot').forEach(b => {
+        b.classList.remove('bg-pwMagenta', 'text-white', 'border-pwMagenta');
+        b.classList.add('border-white/10', 'text-pwCream');
+      });
+      btn.classList.add('bg-pwMagenta', 'text-white', 'border-pwMagenta');
+      btn.classList.remove('border-white/10', 'text-pwCream');
+    }
+  </script>
+
   <!-- Footer Info -->
   <footer class="mt-12 text-center text-[10px] text-pwMuted">
-    <p>© 2026 PWLabs. Protótipo limpo.</p>
+    <p>© 2026 PWLabs. Protótipo dinâmico.</p>
   </footer>
 
 </body>
