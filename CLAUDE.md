@@ -24,6 +24,7 @@ Site institucional da PW Labs (Pixel Wave Labs).
 - **Arquitetura de Informação & UX:** Fluxos de telas, jornadas e wireframes.
 - **UI Design & Prototipagem (Stitch):** Criação de telas e prototipagem interativa.
 - **Tradução para Código / Execução:** Implementação técnica limpa do design no front-end.
+- **Regra de Geração de Prompts (Economia de Tokens):** Sempre que o usuário pedir para criar prompts ou instruções para o Claude ("cole o prompt pro Claude"), registre/atualize APENAS o arquivo `.md` em `C:\Users\lguar\projetos\arquivos-iphone` e PARAR. Não codifique ou execute builds/deploys, pois o usuário usa outro Claude sem cobrança de tokens para executar a codificação.
 
 ### 5. Diretriz de Criação de Carrosséis para Instagram
 Sempre que solicitado a criar um carrossel para redes sociais, siga rigorosamente esta estrutura de conversão e retenção:
