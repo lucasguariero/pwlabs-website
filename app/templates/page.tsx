@@ -24,7 +24,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Home Institucional Tech & SaaS",
     category: "institucional",
     secaoType: "hero",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-1.webp",
+    img: "/assets/easybuilder-cards/card-1.png",
     isPaid: false,
     tag: "Institucional"
   },
@@ -33,7 +33,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Preços & Planos Modernos",
     category: "institucional",
     secaoType: "oferta",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-2.webp",
+    img: "/assets/easybuilder-cards/card-2.png",
     isPaid: true,
     tag: "Tabela de Preços"
   },
@@ -42,7 +42,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Sobre Nós & Manifesto",
     category: "institucional",
     secaoType: "bio",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-3.webp",
+    img: "/assets/easybuilder-cards/card-3.png",
     isPaid: true,
     tag: "Bio / Autoridade"
   },
@@ -51,7 +51,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Home Agência Digital Black & Lime",
     category: "institucional",
     secaoType: "hero",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-4.webp",
+    img: "/assets/easybuilder-cards/card-4.png",
     isPaid: true,
     tag: "Agência"
   },
@@ -60,7 +60,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Contato & Suporte Comercial",
     category: "institucional",
     secaoType: "contato",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-5.webp",
+    img: "/assets/easybuilder-cards/card-5.png",
     isPaid: true,
     tag: "Contato"
   },
@@ -69,7 +69,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Serviços & Soluções Digitais",
     category: "institucional",
     secaoType: "beneficios",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-6.webp",
+    img: "/assets/easybuilder-cards/card-6.png",
     isPaid: true,
     tag: "Benefícios"
   },
@@ -78,7 +78,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Funcionalidades & Recursos do Produto",
     category: "saas",
     secaoType: "beneficios",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-7.webp",
+    img: "/assets/easybuilder-cards/card-7.png",
     isPaid: true,
     tag: "SaaS / Recursos"
   },
@@ -87,7 +87,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Perguntas Frequentes & Acordeon",
     category: "institucional",
     secaoType: "faq",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-8.webp",
+    img: "/assets/easybuilder-cards/card-8.png",
     isPaid: true,
     tag: "FAQ"
   },
@@ -96,7 +96,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Página de Vendas Alta Conversão",
     category: "landing",
     secaoType: "cta",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-9.webp",
+    img: "/assets/easybuilder-cards/card-9.png",
     isPaid: true,
     tag: "Vendas"
   },
@@ -105,7 +105,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Depoimentos & Prova Social",
     category: "landing",
     secaoType: "depoimentos",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-10.webp",
+    img: "/assets/easybuilder-cards/card-10.png",
     isPaid: true,
     tag: "Social Proof"
   },
@@ -114,7 +114,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Seção CTA Final com Garantia",
     category: "landing",
     secaoType: "cta",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-11.webp",
+    img: "/assets/easybuilder-cards/card-11.png",
     isPaid: true,
     tag: "CTA Final"
   },
@@ -123,7 +123,7 @@ const TEMPLATE_ITEMS: TemplateCard[] = [
     title: "Loja Virtual & Vitrine de Produtos",
     category: "ecommerce",
     secaoType: "oferta",
-    img: "/assets/portfolio-carrossel/portfolio-pwlabs-12.webp",
+    img: "/assets/easybuilder-cards/card-12.png",
     isPaid: true,
     tag: "E-commerce"
   }
@@ -805,22 +805,22 @@ export default function EasyBuilderReplica() {
                     className="absolute -right-20 -top-20 w-[720px] grid grid-cols-3 gap-3 pointer-events-none select-none max-lg:hidden will-change-transform [backface-visibility:hidden] [transform:rotate(7deg)_translateZ(0)]"
                   >
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-1.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-1.png" alt="" className="w-full h-full object-cover" />
                     </div>
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-2.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-2.png" alt="" className="w-full h-full object-cover" />
                     </div>
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-3.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-3.png" alt="" className="w-full h-full object-cover" />
                     </div>
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-4.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-4.png" alt="" className="w-full h-full object-cover" />
                     </div>
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-5.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-5.png" alt="" className="w-full h-full object-cover" />
                     </div>
                     <div className="h-[140px] rounded-[10px] border border-gray-200 bg-white overflow-hidden shadow-md">
-                      <img src="/assets/portfolio-carrossel/portfolio-pwlabs-6.webp" alt="" className="w-full h-full object-cover" />
+                      <img src="/assets/easybuilder-cards/card-6.png" alt="" className="w-full h-full object-cover" />
                     </div>
                   </div>
 
